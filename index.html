@@ -379,6 +379,107 @@
     .hl>div+div{border-inline-start:0;border-top:1px solid var(--sand-2)}
     .fcols{grid-template-columns:1fr}
   }
+
+  /* ===== V5 — phone redesign (screens up to 700px only; desktop unchanged) ===== */
+  .mbar{display:none}
+  @media (max-width:700px){
+    :root{--navy:#0a2236;--deep:#0a2236;--sea:#0e7490;--aqua:#e3f3f7;--sandc:#f6efe3;--gold:#e0a458;--gold-2:#cf9244}
+    body{background:var(--sandc);padding-bottom:78px}
+    section{padding:64px 0}
+    .wrap{padding:0 20px}
+    .btn-primary{background:var(--gold);color:var(--deep)}
+    .btn-primary:hover{background:var(--gold-2);box-shadow:none}
+    .btn-ghost{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.4)}
+    .eyebrow{color:var(--sea)}
+    h1,h2,h3{color:var(--deep)}
+
+    /* header */
+    header{padding:6px 0}
+    header.scrolled{background:rgba(10,34,54,.96);box-shadow:0 2px 14px rgba(0,0,0,.25)}
+    header.scrolled .logo,header.scrolled .burger,header.scrolled .menu a:not(.btn){color:#fff}
+    .menu{background:var(--deep);border-top:1px solid rgba(255,255,255,.12)}
+    .menu a:not(.btn){color:#fff;font-size:1.05rem}
+    header .menu .lang,header.scrolled .menu .lang{background:rgba(255,255,255,.14)}
+    header .menu .lang button,header.scrolled .menu .lang button{color:#fff}
+    header .menu .lang button.active,header.scrolled .menu .lang button.active{background:#fff;color:var(--deep)}
+
+    /* hero */
+    .hero{min-height:92vh;align-items:flex-end;padding-bottom:110px !important;
+      background:linear-gradient(180deg,rgba(10,34,54,.45) 0%,rgba(10,34,54,.35) 30%,rgba(10,34,54,.82) 68%,#0a2236 100%),url('images/hero.jpg') 60% top/cover,#0a2236 !important}
+    .hero h1{font-size:2.35rem;max-width:12ch;color:#fff}
+    .hero p.lead{font-size:1rem;color:rgba(255,255,255,.9)}
+    .hero .eyebrow{color:#f0c88a}
+    .hero-actions{flex-direction:column;gap:10px;width:100%}
+    .hero-actions .btn{justify-content:center;width:100%}
+
+    /* booking bar */
+    .bookbar{background:#fff;backdrop-filter:none;margin-top:-84px;padding:18px;border:0;border-radius:18px;box-shadow:0 18px 40px rgba(10,34,54,.28)}
+    .bookbar label{color:var(--deep)}
+
+    /* highlights */
+    .hl{grid-template-columns:1fr 1fr;background:var(--deep);border:0;border-radius:18px;margin-top:20px}
+    .hl>div{padding:16px 14px;column-gap:10px;grid-template-columns:1fr;row-gap:6px;border-inline-start:0!important;border-top:0!important}
+    .hl>div:nth-child(n+3){border-top:1px solid rgba(255,255,255,.12)!important}
+    .hl>div:nth-child(even){border-inline-start:1px solid rgba(255,255,255,.12)!important}
+    .hl svg{grid-row:auto;background:rgba(255,255,255,.12);stroke:#7dd3e6;width:34px;height:34px}
+    .hl b{color:#fff;font-size:.92rem}
+    .hl span{color:rgba(255,255,255,.7);font-size:.78rem}
+
+    /* about */
+    #about{padding-top:56px;background:var(--sandc)}
+    .about{gap:26px}
+    .about-img{aspect-ratio:4/3;border-radius:18px;order:-1}
+    .fact{background:#fff;border-radius:14px;padding:14px 10px;text-align:center}
+    .fact b{color:var(--sea);font-size:1.5rem}
+    .fact span{font-size:.74rem}
+
+    /* rooms: dark section + swipe carousel */
+    .rooms-bg{background:var(--deep)}
+    .rooms-bg .section-head h2{color:#fff}
+    .rooms-bg .section-head p{color:rgba(255,255,255,.72)}
+    .rooms-bg .eyebrow{color:#7dd3e6}
+    .rooms{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin:0 -20px;padding:4px 20px 16px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+    .rooms::-webkit-scrollbar{display:none}
+    .room{flex:0 0 82%;scroll-snap-align:center;background:#fff}
+    .room:hover{transform:none}
+
+    /* services: compact 2-column */
+    #amenities{background:var(--sandc)}
+    .amen{grid-template-columns:1fr 1fr;gap:10px}
+    .am{padding:18px 14px;background:#fff;border-radius:16px}
+    .am:hover{background:#fff;color:inherit}.am:hover h4{color:var(--deep)}.am:hover p{color:var(--muted)}
+    .am svg{width:40px;height:40px;background:var(--aqua);margin-bottom:10px}
+    .am h4{font-size:.98rem}
+    .am p{font-size:.8rem}
+    .amen .am:last-child:nth-child(odd){grid-column:span 2}
+
+    /* gallery */
+    #gallery{background:#fff;padding-top:64px!important}
+    .gallery{gap:8px;grid-auto-rows:130px}
+
+    /* location */
+    .loc-bg{background:var(--deep);padding:64px 0}
+    .loc-bg>.wrap{background:none;padding:0 20px;margin:0;border-radius:0;width:auto}
+    .loc h2{color:#fff}
+    .map{aspect-ratio:1/1;border-radius:16px}
+
+    /* info + contact */
+    .info-card{background:#fff;border-radius:16px;border-inline-start:4px solid var(--sea)}
+    #contact{background:var(--sandc)}
+    .contact-box{background:#fff;border-radius:18px;padding:26px 22px}
+
+    /* footer */
+    footer{background:var(--deep);padding:54px 0 24px}
+    .fcols{grid-template-columns:1fr 1fr;gap:28px 20px}
+    .fcols>div:first-child{grid-column:span 2}
+
+    /* sticky bottom bar */
+    .mbar{display:flex;gap:10px;position:fixed;inset:auto 0 0 0;z-index:70;background:var(--deep);padding:10px 16px calc(10px + env(safe-area-inset-bottom));border-top:1px solid rgba(255,255,255,.14);box-shadow:0 -8px 24px rgba(0,0,0,.25)}
+    .mbar a{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:.85em 1em;border-radius:12px;font-weight:700;font-size:.95rem}
+    .mbar .m-call{border:1px solid rgba(255,255,255,.4);color:#fff}
+    .mbar .m-call svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:1.8}
+    .mbar .m-book{background:var(--gold);color:var(--deep)}
+  }
 </style>
 </head>
 <body>
@@ -449,7 +550,7 @@
       <p data-i18n="about_p2">Our team at reception is here day and night to help with anything — from your arrival by ferry or plane to finding the best way through the Medina.</p>
       <div class="facts">
         <div class="fact"><b>40</b><span data-i18n="fact1">rooms over 4 floors</span></div>
-        <div class="fact"><b>300 m</b><span data-i18n="fact2">to Tangier Beach</span></div>
+        <div class="fact"><b>50 m</b><span data-i18n="fact2">to Tangier Beach</span></div>
         <div class="fact"><b>24/7</b><span data-i18n="fact3">reception</span></div>
       </div>
     </div>
@@ -609,8 +710,8 @@
       <h2 data-i18n="loc_title">In the heart of the Corniche</h2>
       <p data-i18n="loc_p">168 Avenue Mohamed VI, Tangier 90000 — the seafront boulevard with cafés, restaurants and the beach on your doorstep.</p>
       <ul class="dist">
-        <li><span data-i18n="d1">Tanja Marina Bay</span><span>200 m</span></li>
-        <li><span data-i18n="d2">Tangier Beach</span><span>300 m</span></li>
+        <li><span data-i18n="d1">Tanja Marina Bay</span><span>20 m</span></li>
+        <li><span data-i18n="d2">Tangier Beach</span><span>50 m</span></li>
         <li><span data-i18n="d3">Port of Tangier (city)</span><span>0.7 km</span></li>
         <li><span data-i18n="d4">Grand Socco & Medina</span><span>1.3 km</span></li>
         <li><span data-i18n="d5">Tanger Ville train station</span><span data-i18n="d5v">~5 min drive</span></li>
@@ -706,6 +807,11 @@
 </footer>
 
 
+<div class="mbar">
+  <a class="m-call js-tel" href="#"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span data-i18n="call">Call</span></a>
+  <a class="m-book js-book" href="#" data-i18n="book">Book now</a>
+</div>
+
 <script>
 /* ============================================================
    EDIT THESE DETAILS — they are used everywhere on the site.
@@ -716,7 +822,7 @@ const CONFIG = {
 };
 
 const T = {
- en:{h1t:"Seafront location",h1d:"Opposite Tangier Beach",h2t:"Sea-view rooms",h2d:"Views over the bay to Spain",h3t:"Breakfast",h3d:"7:00–11:00 · not included in the rate",h4t:"24/7 reception",h4d:"Arabic · French · English · Spanish",f_desc:"A seafront hotel on the Corniche of Tangier, steps from the beach, the marina and the old Medina.",f_explore:"Explore",f_rights:"All rights reserved.",rv_title:"Reserve your room",rv_sub:"Send us your request. Our reception will reply by email to confirm availability and explain how to pay the deposit. Your reservation is confirmed once the deposit is received.",rv_policy:"This is a reservation request, not a confirmed booking. No payment is taken on this website.",choose_room:"Choose your room",continue:"Continue",back:"← Back",f_name:"Full name",f_phone:"Phone",f_arrival:"Estimated arrival time",f_msg:"Message (optional)",ph_rvmsg:"Special requests, arrival by ferry…",send_req:"Send reservation request",sending:"Sending…",done_title:"Request sent!",done_text:"Thank you. Our reception has received your request and will contact you by email to confirm availability and explain the deposit. Your reservation is confirmed once the deposit is received.",close:"Close",night:"night",nights:"nights",e_dates:"Please choose valid check-in and check-out dates.",e_room:"Please choose a room.",e_fields:"Please enter your name, a valid phone number and email.",e_send:"Sorry, the request could not be sent.",e_mail:"Send it by email instead",nav_about:"The hotel",nav_rooms:"Rooms",nav_amen:"Services",nav_loc:"Location",nav_contact:"Contact",book:"Book now",
+ en:{h1t:"Seafront location",h1d:"Opposite Tangier Beach",h2t:"Sea-view rooms",h2d:"Views over the bay to Spain",h3t:"Breakfast",h3d:"7:00–11:00 · not included in the rate",h4t:"24/7 reception",h4d:"Arabic · French · English · Spanish",f_desc:"A seafront hotel on the Corniche of Tangier, steps from the beach, the marina and the old Medina.",f_explore:"Explore",f_rights:"All rights reserved.",rv_title:"Reserve your room",rv_sub:"Send us your request. Our reception will reply by email to confirm availability and explain how to pay the deposit. Your reservation is confirmed once the deposit is received.",rv_policy:"This is a reservation request, not a confirmed booking. No payment is taken on this website.",choose_room:"Choose your room",continue:"Continue",back:"← Back",f_name:"Full name",f_phone:"Phone",f_arrival:"Estimated arrival time",f_msg:"Message (optional)",ph_rvmsg:"Special requests, arrival by ferry…",send_req:"Send reservation request",sending:"Sending…",done_title:"Request sent!",done_text:"Thank you. Our reception has received your request and will contact you by email to confirm availability and explain the deposit. Your reservation is confirmed once the deposit is received.",close:"Close",night:"night",nights:"nights",e_dates:"Please choose valid check-in and check-out dates.",e_room:"Please choose a room.",e_fields:"Please enter your name, a valid phone number and email.",e_send:"Sorry, the request could not be sent.",e_mail:"Send it by email instead",nav_about:"The hotel",nav_rooms:"Rooms",nav_amen:"Services",nav_loc:"Location",nav_contact:"Contact",book:"Book now",call:"Call",
   hero_eyebrow:"Corniche of Tangier · Morocco",hero_title:"Wake up to the Strait of Gibraltar",
   hero_lead:"A warm, welcoming seafront hotel on Avenue Mohamed VI — steps from Tangier Beach, Tanja Marina Bay and the old Medina.",
   book_stay:"Book your stay",see_rooms:"Discover our rooms",checkin:"Check-in",checkout:"Check-out",guests:"Guests",room:"Room",check_avail:"Check availability",
@@ -742,7 +848,7 @@ const T = {
   i2:"House rules",p1:"Valid ID required at check-in",p2:"Pets are not allowed",p3:"Non-smoking rooms (designated smoking areas)",p4:"No alcohol served on site",
   i3:"Getting here",g1:"No on-site parking — public parking nearby",g2:"Taxis available 24/7 from the airport & port",g3:"Ask reception to arrange your transfer",
   contact_title:"Contact us",address:"Address",phone:"Phone",langs:"We speak",enq_title:"Send a request"},
- fr:{h1t:"Face à la mer",h1d:"En face de la plage de Tanger",h2t:"Chambres vue mer",h2d:"Vue sur la baie jusqu'à l'Espagne",h3t:"Petit-déjeuner",h3d:"7h–11h · non inclus dans le tarif",h4t:"Réception 24h/24",h4d:"Arabe · Français · Anglais · Espagnol",f_desc:"Un hôtel en bord de mer sur la Corniche de Tanger, à deux pas de la plage, de la marina et de la Médina.",f_explore:"Découvrir",f_rights:"Tous droits réservés.",rv_title:"Réservez votre chambre",rv_sub:"Envoyez-nous votre demande. Notre réception vous répondra par email pour confirmer la disponibilité et vous expliquer comment verser l'acompte. Votre réservation est confirmée dès réception de l'acompte.",rv_policy:"Il s'agit d'une demande de réservation, pas d'une réservation confirmée. Aucun paiement n'est demandé sur ce site.",choose_room:"Choisissez votre chambre",continue:"Continuer",back:"← Retour",f_name:"Nom complet",f_phone:"Téléphone",f_arrival:"Heure d'arrivée estimée",f_msg:"Message (facultatif)",ph_rvmsg:"Demandes particulières, arrivée en ferry…",send_req:"Envoyer la demande",sending:"Envoi…",done_title:"Demande envoyée !",done_text:"Merci. Notre réception a bien reçu votre demande et vous contactera par email pour confirmer la disponibilité et vous expliquer l'acompte. Votre réservation est confirmée dès réception de l'acompte.",close:"Fermer",night:"nuit",nights:"nuits",e_dates:"Veuillez choisir des dates d'arrivée et de départ valides.",e_room:"Veuillez choisir une chambre.",e_fields:"Veuillez indiquer votre nom, un numéro de téléphone et un email valides.",e_send:"Désolé, la demande n'a pas pu être envoyée.",e_mail:"Envoyer par email",nav_about:"L'hôtel",nav_rooms:"Chambres",nav_amen:"Services",nav_loc:"Accès",nav_contact:"Contact",book:"Réserver",
+ fr:{h1t:"Face à la mer",h1d:"En face de la plage de Tanger",h2t:"Chambres vue mer",h2d:"Vue sur la baie jusqu'à l'Espagne",h3t:"Petit-déjeuner",h3d:"7h–11h · non inclus dans le tarif",h4t:"Réception 24h/24",h4d:"Arabe · Français · Anglais · Espagnol",f_desc:"Un hôtel en bord de mer sur la Corniche de Tanger, à deux pas de la plage, de la marina et de la Médina.",f_explore:"Découvrir",f_rights:"Tous droits réservés.",rv_title:"Réservez votre chambre",rv_sub:"Envoyez-nous votre demande. Notre réception vous répondra par email pour confirmer la disponibilité et vous expliquer comment verser l'acompte. Votre réservation est confirmée dès réception de l'acompte.",rv_policy:"Il s'agit d'une demande de réservation, pas d'une réservation confirmée. Aucun paiement n'est demandé sur ce site.",choose_room:"Choisissez votre chambre",continue:"Continuer",back:"← Retour",f_name:"Nom complet",f_phone:"Téléphone",f_arrival:"Heure d'arrivée estimée",f_msg:"Message (facultatif)",ph_rvmsg:"Demandes particulières, arrivée en ferry…",send_req:"Envoyer la demande",sending:"Envoi…",done_title:"Demande envoyée !",done_text:"Merci. Notre réception a bien reçu votre demande et vous contactera par email pour confirmer la disponibilité et vous expliquer l'acompte. Votre réservation est confirmée dès réception de l'acompte.",close:"Fermer",night:"nuit",nights:"nuits",e_dates:"Veuillez choisir des dates d'arrivée et de départ valides.",e_room:"Veuillez choisir une chambre.",e_fields:"Veuillez indiquer votre nom, un numéro de téléphone et un email valides.",e_send:"Désolé, la demande n'a pas pu être envoyée.",e_mail:"Envoyer par email",nav_about:"L'hôtel",nav_rooms:"Chambres",nav_amen:"Services",nav_loc:"Accès",nav_contact:"Contact",book:"Réserver",call:"Appeler",
   hero_eyebrow:"Corniche de Tanger · Maroc",hero_title:"Réveillez-vous face au détroit de Gibraltar",
   hero_lead:"Un hôtel chaleureux en bord de mer, avenue Mohamed VI — à deux pas de la plage, de Tanja Marina Bay et de la Médina.",
   book_stay:"Réserver votre séjour",see_rooms:"Découvrir nos chambres",checkin:"Arrivée",checkout:"Départ",guests:"Personnes",room:"Chambre",check_avail:"Vérifier la disponibilité",
@@ -768,7 +874,7 @@ const T = {
   i2:"Règlement",p1:"Pièce d'identité exigée à l'arrivée",p2:"Animaux non admis",p3:"Chambres non-fumeurs (espaces fumeurs dédiés)",p4:"Pas d'alcool servi sur place",
   i3:"Venir à l'hôtel",g1:"Pas de parking sur place — parkings publics à proximité",g2:"Taxis 24h/24 depuis l'aéroport et le port",g3:"Demandez à la réception d'organiser votre transfert",
   contact_title:"Nous contacter",address:"Adresse",phone:"Téléphone",langs:"Nous parlons",enq_title:"Envoyer une demande"},
- ar:{h1t:"على الواجهة البحرية",h1d:"مقابل شاطئ طنجة",h2t:"غرف مطلة على البحر",h2d:"إطلالة على الخليج حتى إسبانيا",h3t:"الفطور",h3d:"7:00–11:00 · غير مشمول في السعر",h4t:"استقبال 24/24",h4d:"العربية · الفرنسية · الإنجليزية · الإسبانية",f_desc:"فندق على الواجهة البحرية بكورنيش طنجة، على بعد خطوات من الشاطئ والمارينا والمدينة القديمة.",f_explore:"اكتشف",f_rights:"جميع الحقوق محفوظة.",rv_title:"احجز غرفتك",rv_sub:"أرسل لنا طلبك. سيرد عليك فريق الاستقبال عبر البريد الإلكتروني لتأكيد التوفر وشرح كيفية دفع العربون. يتم تأكيد حجزك بعد استلام العربون.",rv_policy:"هذا طلب حجز وليس حجزاً مؤكداً. لا يتم أي دفع عبر هذا الموقع.",choose_room:"اختر غرفتك",continue:"متابعة",back:"→ رجوع",f_name:"الاسم الكامل",f_phone:"الهاتف",f_arrival:"وقت الوصول المتوقع",f_msg:"رسالة (اختياري)",ph_rvmsg:"طلبات خاصة، الوصول بالباخرة…",send_req:"إرسال طلب الحجز",sending:"جارٍ الإرسال…",done_title:"تم إرسال الطلب!",done_text:"شكراً لك. استلم فريق الاستقبال طلبك وسيتواصل معك عبر البريد الإلكتروني لتأكيد التوفر وشرح العربون. يتم تأكيد حجزك بعد استلام العربون.",close:"إغلاق",night:"ليلة",nights:"ليالٍ",e_dates:"يرجى اختيار تاريخي وصول ومغادرة صحيحين.",e_room:"يرجى اختيار غرفة.",e_fields:"يرجى إدخال الاسم ورقم هاتف وبريد إلكتروني صحيحين.",e_send:"عذراً، تعذّر إرسال الطلب.",e_mail:"أرسله عبر البريد الإلكتروني",nav_about:"الفندق",nav_rooms:"الغرف",nav_amen:"الخدمات",nav_loc:"الموقع",nav_contact:"اتصل بنا",book:"احجز الآن",
+ ar:{h1t:"على الواجهة البحرية",h1d:"مقابل شاطئ طنجة",h2t:"غرف مطلة على البحر",h2d:"إطلالة على الخليج حتى إسبانيا",h3t:"الفطور",h3d:"7:00–11:00 · غير مشمول في السعر",h4t:"استقبال 24/24",h4d:"العربية · الفرنسية · الإنجليزية · الإسبانية",f_desc:"فندق على الواجهة البحرية بكورنيش طنجة، على بعد خطوات من الشاطئ والمارينا والمدينة القديمة.",f_explore:"اكتشف",f_rights:"جميع الحقوق محفوظة.",rv_title:"احجز غرفتك",rv_sub:"أرسل لنا طلبك. سيرد عليك فريق الاستقبال عبر البريد الإلكتروني لتأكيد التوفر وشرح كيفية دفع العربون. يتم تأكيد حجزك بعد استلام العربون.",rv_policy:"هذا طلب حجز وليس حجزاً مؤكداً. لا يتم أي دفع عبر هذا الموقع.",choose_room:"اختر غرفتك",continue:"متابعة",back:"→ رجوع",f_name:"الاسم الكامل",f_phone:"الهاتف",f_arrival:"وقت الوصول المتوقع",f_msg:"رسالة (اختياري)",ph_rvmsg:"طلبات خاصة، الوصول بالباخرة…",send_req:"إرسال طلب الحجز",sending:"جارٍ الإرسال…",done_title:"تم إرسال الطلب!",done_text:"شكراً لك. استلم فريق الاستقبال طلبك وسيتواصل معك عبر البريد الإلكتروني لتأكيد التوفر وشرح العربون. يتم تأكيد حجزك بعد استلام العربون.",close:"إغلاق",night:"ليلة",nights:"ليالٍ",e_dates:"يرجى اختيار تاريخي وصول ومغادرة صحيحين.",e_room:"يرجى اختيار غرفة.",e_fields:"يرجى إدخال الاسم ورقم هاتف وبريد إلكتروني صحيحين.",e_send:"عذراً، تعذّر إرسال الطلب.",e_mail:"أرسله عبر البريد الإلكتروني",nav_about:"الفندق",nav_rooms:"الغرف",nav_amen:"الخدمات",nav_loc:"الموقع",nav_contact:"اتصل بنا",book:"احجز الآن",call:"اتصل",
   hero_eyebrow:"كورنيش طنجة · المغرب",hero_title:"استيقظ على إطلالة مضيق جبل طارق",
   hero_lead:"فندق دافئ ومضياف على البحر في شارع محمد السادس — على بعد خطوات من شاطئ طنجة ومارينا طنجة والمدينة القديمة.",
   book_stay:"احجز إقامتك",see_rooms:"اكتشف غرفنا",checkin:"الوصول",checkout:"المغادرة",guests:"عدد الأشخاص",room:"الغرفة",check_avail:"تحقق من التوفر",
@@ -815,6 +921,7 @@ document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click
 
 /* Contact details */
 document.querySelectorAll(".js-phone").forEach(a => { a.textContent = CONFIG.phone; a.href = "tel:" + CONFIG.phone.replace(/\s/g,""); });
+document.querySelectorAll(".js-tel").forEach(a => { a.href = "tel:" + CONFIG.phone.replace(/\s/g,""); });
 document.querySelectorAll(".js-email").forEach(a => { a.textContent = CONFIG.email; a.href = "mailto:" + CONFIG.email; });
 
 

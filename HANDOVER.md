@@ -37,7 +37,7 @@ English, French and Arabic (Arabic switches the page to right-to-left). All text
 ## Facts used on the site (from the hotel's Expedia / Hotels.com listings, to be confirmed by the owner)
 - Check-in 15:00–20:00, check-out until 12:00. Breakfast 07:00–11:00 is NOT included in the room rate (owner confirmed; to confirm: is it served and what does it cost?).
 - Free WiFi, restaurant, 24h reception, A/C, laundry, room service, 24h security. No on-site parking, no pets, no alcohol served.
-- Distances: Tanja Marina Bay 200 m, Tangier Beach 300 m, city port 0.7 km, Grand Socco/Medina 1.3 km, airport ~20 min.
+- Distances: Tanja Marina Bay 20 m, Tangier Beach 50 m (owner confirmed), city port 0.7 km, Grand Socco/Medina 1.3 km, airport ~20 min.
 - Room types: Double Sea View (queen bed), Twin Sea View, Twin City View (16 m²), Standard Triple Sea View (3 singles), Superior Triple City View.
 
 ## Open questions / to-do
