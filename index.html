@@ -525,7 +525,6 @@
       <div class="am reveal"><svg viewBox="0 0 24 24"><path d="M4 3v8a3 3 0 0 0 6 0V3M7 3v18M17 3c-2 0-3 3-3 7h3v11"/></svg><h4 data-i18n="a2">Restaurant</h4><p data-i18n="a2d">On-site restaurant. Breakfast served 7:00–11:00, not included in the room rate.</p></div>
       <div class="am reveal"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><h4 data-i18n="a3">24h reception</h4><p data-i18n="a3d">Multilingual staff, express check-out.</p></div>
       <div class="am reveal"><svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18M6 6l12 12M18 6 6 18"/></svg><h4 data-i18n="a4">Air conditioning</h4><p data-i18n="a4d">Individual climate control in all rooms.</p></div>
-      <div class="am reveal"><svg viewBox="0 0 24 24"><path d="M3 18h18M5 18V9l7-5 7 5v9M9 18v-5h6v5"/></svg><h4 data-i18n="a5">Terrace</h4><p data-i18n="a5d">Relax outdoors with Mediterranean views.</p></div>
       <div class="am reveal"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="12" cy="13" r="4"/><path d="M8 6h.01M11 6h.01"/></svg><h4 data-i18n="a6">Laundry</h4><p data-i18n="a6d">Laundry and ironing on request.</p></div>
       <div class="am reveal"><svg viewBox="0 0 24 24"><path d="M3 11h18v6H3zM6 11V7h12v4M5 17v3M19 17v3"/></svg><h4 data-i18n="a7">Room service</h4><p data-i18n="a7d">Enjoy a meal in the comfort of your room.</p></div>
       <div class="am reveal"><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/></svg><h4 data-i18n="a8">24h security</h4><p data-i18n="a8d">Key-card access and security cameras.</p></div>
@@ -557,7 +556,7 @@
     <button class="rv-x" type="button" aria-label="Close">×</button>
     <div id="rv-main">
       <h3 data-i18n="rv_title">Reserve your room</h3>
-      <p class="rv-sub" data-i18n="rv_sub">Send us your request — our reception confirms availability by email or phone, usually within a few hours.</p>
+      <p class="rv-sub" data-i18n="rv_sub">Send us your request. Our reception will reply by email to confirm availability and explain how to pay the deposit. Your reservation is confirmed once the deposit is received.</p>
       <div class="rv-steps"><span class="on"></span><span id="rv-s2"></span></div>
 
       <div id="rv-step1">
@@ -584,6 +583,7 @@
           <div><label data-i18n="f_arrival">Estimated arrival time</label><input id="rv-time" type="time"></div>
         </div>
         <div style="margin-bottom:1.2em"><label data-i18n="f_msg">Message (optional)</label><textarea id="rv-note" data-i18n-ph="ph_rvmsg" placeholder="Special requests, arrival by ferry…"></textarea></div>
+        <p class="note" data-i18n="rv_policy" style="margin-bottom:1em">This is a reservation request, not a confirmed booking. No payment is taken on this website.</p>
         <input class="hp" id="rv-hp" tabindex="-1" autocomplete="off">
         <div class="rv-actions">
           <button class="btn btn-line" type="button" id="rv-back" data-i18n="back">← Back</button>
@@ -595,7 +595,7 @@
     <div class="rv-done" id="rv-done" style="display:none">
       <div class="ok">✓</div>
       <h3 data-i18n="done_title">Request sent!</h3>
-      <p class="rv-sub" data-i18n="done_text">Thank you. Our reception has received your request and will contact you shortly to confirm your reservation.</p>
+      <p class="rv-sub" data-i18n="done_text">Thank you. Our reception has received your request and will contact you by email to confirm availability and explain the deposit. Your reservation is confirmed once the deposit is received.</p>
       <button class="btn btn-primary" type="button" id="rv-close2" data-i18n="close">Close</button>
     </div>
   </div>
@@ -669,7 +669,7 @@
     </div>
     <div class="contact-box reveal">
       <h3 data-i18n="enq_title">Send a request</h3>
-      <p class="rv-sub" data-i18n="rv_sub">Send us your request — our reception confirms availability by email or phone, usually within a few hours.</p>
+      <p class="rv-sub" data-i18n="rv_sub">Send us your request. Our reception will reply by email to confirm availability and explain how to pay the deposit. Your reservation is confirmed once the deposit is received.</p>
       <a href="#" class="btn btn-primary js-book" data-i18n="book">Book now</a>
     </div>
   </div>
@@ -716,7 +716,7 @@ const CONFIG = {
 };
 
 const T = {
- en:{h1t:"Seafront location",h1d:"Opposite Tangier Beach",h2t:"Sea-view rooms",h2d:"Views over the bay to Spain",h3t:"Breakfast",h3d:"7:00–11:00 · not included in the rate",h4t:"24/7 reception",h4d:"Arabic · French · English · Spanish",f_desc:"A seafront hotel on the Corniche of Tangier, steps from the beach, the marina and the old Medina.",f_explore:"Explore",f_rights:"All rights reserved.",rv_title:"Reserve your room",rv_sub:"Send us your request — our reception confirms availability by email or phone, usually within a few hours.",choose_room:"Choose your room",continue:"Continue",back:"← Back",f_name:"Full name",f_phone:"Phone",f_arrival:"Estimated arrival time",f_msg:"Message (optional)",ph_rvmsg:"Special requests, arrival by ferry…",send_req:"Send reservation request",sending:"Sending…",done_title:"Request sent!",done_text:"Thank you. Our reception has received your request and will contact you shortly to confirm your reservation.",close:"Close",night:"night",nights:"nights",e_dates:"Please choose valid check-in and check-out dates.",e_room:"Please choose a room.",e_fields:"Please enter your name, a valid phone number and email.",e_send:"Sorry, the request could not be sent.",e_mail:"Send it by email instead",nav_about:"The hotel",nav_rooms:"Rooms",nav_amen:"Services",nav_loc:"Location",nav_contact:"Contact",book:"Book now",
+ en:{h1t:"Seafront location",h1d:"Opposite Tangier Beach",h2t:"Sea-view rooms",h2d:"Views over the bay to Spain",h3t:"Breakfast",h3d:"7:00–11:00 · not included in the rate",h4t:"24/7 reception",h4d:"Arabic · French · English · Spanish",f_desc:"A seafront hotel on the Corniche of Tangier, steps from the beach, the marina and the old Medina.",f_explore:"Explore",f_rights:"All rights reserved.",rv_title:"Reserve your room",rv_sub:"Send us your request. Our reception will reply by email to confirm availability and explain how to pay the deposit. Your reservation is confirmed once the deposit is received.",rv_policy:"This is a reservation request, not a confirmed booking. No payment is taken on this website.",choose_room:"Choose your room",continue:"Continue",back:"← Back",f_name:"Full name",f_phone:"Phone",f_arrival:"Estimated arrival time",f_msg:"Message (optional)",ph_rvmsg:"Special requests, arrival by ferry…",send_req:"Send reservation request",sending:"Sending…",done_title:"Request sent!",done_text:"Thank you. Our reception has received your request and will contact you by email to confirm availability and explain the deposit. Your reservation is confirmed once the deposit is received.",close:"Close",night:"night",nights:"nights",e_dates:"Please choose valid check-in and check-out dates.",e_room:"Please choose a room.",e_fields:"Please enter your name, a valid phone number and email.",e_send:"Sorry, the request could not be sent.",e_mail:"Send it by email instead",nav_about:"The hotel",nav_rooms:"Rooms",nav_amen:"Services",nav_loc:"Location",nav_contact:"Contact",book:"Book now",
   hero_eyebrow:"Corniche of Tangier · Morocco",hero_title:"Wake up to the Strait of Gibraltar",
   hero_lead:"A warm, welcoming seafront hotel on Avenue Mohamed VI — steps from Tangier Beach, Tanja Marina Bay and the old Medina.",
   book_stay:"Book your stay",see_rooms:"Discover our rooms",checkin:"Check-in",checkout:"Check-out",guests:"Guests",room:"Room",check_avail:"Check availability",
@@ -734,7 +734,7 @@ const T = {
   amen_eyebrow:"Services",amen_title:"Everything for an easy stay",gal_eyebrow:"Gallery",gal_title:"A look inside Miramar",
   a1:"Free WiFi",a1d:"In every room and public area.",a2:"Restaurant",a2d:"On-site restaurant. Breakfast served 7:00–11:00, not included in the room rate.",
   a3:"24h reception",a3d:"Multilingual staff, express check-out.",a4:"Air conditioning",a4d:"Individual climate control in all rooms.",
-  a5:"Terrace",a5d:"Relax outdoors with Mediterranean views.",a6:"Laundry",a6d:"Laundry and ironing on request.",
+  a6:"Laundry",a6d:"Laundry and ironing on request.",
   a7:"Room service",a7d:"Enjoy a meal in the comfort of your room.",a8:"24h security",a8d:"Key-card access and security cameras.",
   loc_eyebrow:"Location",loc_title:"In the heart of the Corniche",loc_p:"168 Avenue Mohamed VI, Tangier 90000 — the seafront boulevard with cafés, restaurants and the beach on your doorstep.",
   d1:"Tanja Marina Bay",d2:"Tangier Beach",d3:"Port of Tangier (city)",d4:"Grand Socco & Medina",d5:"Tanger Ville train station",d5v:"~5 min drive",d6:"Ibn Battouta Airport",d6v:"~20 min drive",
@@ -742,7 +742,7 @@ const T = {
   i2:"House rules",p1:"Valid ID required at check-in",p2:"Pets are not allowed",p3:"Non-smoking rooms (designated smoking areas)",p4:"No alcohol served on site",
   i3:"Getting here",g1:"No on-site parking — public parking nearby",g2:"Taxis available 24/7 from the airport & port",g3:"Ask reception to arrange your transfer",
   contact_title:"Contact us",address:"Address",phone:"Phone",langs:"We speak",enq_title:"Send a request"},
- fr:{h1t:"Face à la mer",h1d:"En face de la plage de Tanger",h2t:"Chambres vue mer",h2d:"Vue sur la baie jusqu'à l'Espagne",h3t:"Petit-déjeuner",h3d:"7h–11h · non inclus dans le tarif",h4t:"Réception 24h/24",h4d:"Arabe · Français · Anglais · Espagnol",f_desc:"Un hôtel en bord de mer sur la Corniche de Tanger, à deux pas de la plage, de la marina et de la Médina.",f_explore:"Découvrir",f_rights:"Tous droits réservés.",rv_title:"Réservez votre chambre",rv_sub:"Envoyez-nous votre demande — notre réception confirme la disponibilité par email ou téléphone, généralement en quelques heures.",choose_room:"Choisissez votre chambre",continue:"Continuer",back:"← Retour",f_name:"Nom complet",f_phone:"Téléphone",f_arrival:"Heure d'arrivée estimée",f_msg:"Message (facultatif)",ph_rvmsg:"Demandes particulières, arrivée en ferry…",send_req:"Envoyer la demande",sending:"Envoi…",done_title:"Demande envoyée !",done_text:"Merci. Notre réception a bien reçu votre demande et vous contactera rapidement pour confirmer votre réservation.",close:"Fermer",night:"nuit",nights:"nuits",e_dates:"Veuillez choisir des dates d'arrivée et de départ valides.",e_room:"Veuillez choisir une chambre.",e_fields:"Veuillez indiquer votre nom, un numéro de téléphone et un email valides.",e_send:"Désolé, la demande n'a pas pu être envoyée.",e_mail:"Envoyer par email",nav_about:"L'hôtel",nav_rooms:"Chambres",nav_amen:"Services",nav_loc:"Accès",nav_contact:"Contact",book:"Réserver",
+ fr:{h1t:"Face à la mer",h1d:"En face de la plage de Tanger",h2t:"Chambres vue mer",h2d:"Vue sur la baie jusqu'à l'Espagne",h3t:"Petit-déjeuner",h3d:"7h–11h · non inclus dans le tarif",h4t:"Réception 24h/24",h4d:"Arabe · Français · Anglais · Espagnol",f_desc:"Un hôtel en bord de mer sur la Corniche de Tanger, à deux pas de la plage, de la marina et de la Médina.",f_explore:"Découvrir",f_rights:"Tous droits réservés.",rv_title:"Réservez votre chambre",rv_sub:"Envoyez-nous votre demande. Notre réception vous répondra par email pour confirmer la disponibilité et vous expliquer comment verser l'acompte. Votre réservation est confirmée dès réception de l'acompte.",rv_policy:"Il s'agit d'une demande de réservation, pas d'une réservation confirmée. Aucun paiement n'est demandé sur ce site.",choose_room:"Choisissez votre chambre",continue:"Continuer",back:"← Retour",f_name:"Nom complet",f_phone:"Téléphone",f_arrival:"Heure d'arrivée estimée",f_msg:"Message (facultatif)",ph_rvmsg:"Demandes particulières, arrivée en ferry…",send_req:"Envoyer la demande",sending:"Envoi…",done_title:"Demande envoyée !",done_text:"Merci. Notre réception a bien reçu votre demande et vous contactera par email pour confirmer la disponibilité et vous expliquer l'acompte. Votre réservation est confirmée dès réception de l'acompte.",close:"Fermer",night:"nuit",nights:"nuits",e_dates:"Veuillez choisir des dates d'arrivée et de départ valides.",e_room:"Veuillez choisir une chambre.",e_fields:"Veuillez indiquer votre nom, un numéro de téléphone et un email valides.",e_send:"Désolé, la demande n'a pas pu être envoyée.",e_mail:"Envoyer par email",nav_about:"L'hôtel",nav_rooms:"Chambres",nav_amen:"Services",nav_loc:"Accès",nav_contact:"Contact",book:"Réserver",
   hero_eyebrow:"Corniche de Tanger · Maroc",hero_title:"Réveillez-vous face au détroit de Gibraltar",
   hero_lead:"Un hôtel chaleureux en bord de mer, avenue Mohamed VI — à deux pas de la plage, de Tanja Marina Bay et de la Médina.",
   book_stay:"Réserver votre séjour",see_rooms:"Découvrir nos chambres",checkin:"Arrivée",checkout:"Départ",guests:"Personnes",room:"Chambre",check_avail:"Vérifier la disponibilité",
@@ -760,7 +760,7 @@ const T = {
   amen_eyebrow:"Services",amen_title:"Tout pour un séjour facile",gal_eyebrow:"Galerie",gal_title:"Un aperçu du Miramar",
   a1:"WiFi gratuit",a1d:"Dans toutes les chambres et espaces communs.",a2:"Restaurant",a2d:"Restaurant sur place. Petit-déjeuner de 7h à 11h, non inclus dans le tarif de la chambre.",
   a3:"Réception 24h/24",a3d:"Personnel multilingue, départ express.",a4:"Climatisation",a4d:"Réglage individuel dans chaque chambre.",
-  a5:"Terrasse",a5d:"Détendez-vous en plein air face à la Méditerranée.",a6:"Blanchisserie",a6d:"Lavage et repassage sur demande.",
+  a6:"Blanchisserie",a6d:"Lavage et repassage sur demande.",
   a7:"Service en chambre",a7d:"Savourez un repas dans le confort de votre chambre.",a8:"Sécurité 24h/24",a8d:"Accès par carte et caméras de sécurité.",
   loc_eyebrow:"Accès",loc_title:"Au cœur de la Corniche",loc_p:"168 avenue Mohamed VI, Tanger 90000 — le boulevard du front de mer, avec cafés, restaurants et la plage devant la porte.",
   d1:"Tanja Marina Bay",d2:"Plage de Tanger",d3:"Port de Tanger Ville",d4:"Grand Socco & Médina",d5:"Gare Tanger Ville",d5v:"~5 min en voiture",d6:"Aéroport Ibn Battouta",d6v:"~20 min en voiture",
@@ -768,7 +768,7 @@ const T = {
   i2:"Règlement",p1:"Pièce d'identité exigée à l'arrivée",p2:"Animaux non admis",p3:"Chambres non-fumeurs (espaces fumeurs dédiés)",p4:"Pas d'alcool servi sur place",
   i3:"Venir à l'hôtel",g1:"Pas de parking sur place — parkings publics à proximité",g2:"Taxis 24h/24 depuis l'aéroport et le port",g3:"Demandez à la réception d'organiser votre transfert",
   contact_title:"Nous contacter",address:"Adresse",phone:"Téléphone",langs:"Nous parlons",enq_title:"Envoyer une demande"},
- ar:{h1t:"على الواجهة البحرية",h1d:"مقابل شاطئ طنجة",h2t:"غرف مطلة على البحر",h2d:"إطلالة على الخليج حتى إسبانيا",h3t:"الفطور",h3d:"7:00–11:00 · غير مشمول في السعر",h4t:"استقبال 24/24",h4d:"العربية · الفرنسية · الإنجليزية · الإسبانية",f_desc:"فندق على الواجهة البحرية بكورنيش طنجة، على بعد خطوات من الشاطئ والمارينا والمدينة القديمة.",f_explore:"اكتشف",f_rights:"جميع الحقوق محفوظة.",rv_title:"احجز غرفتك",rv_sub:"أرسل لنا طلبك — يؤكد فريق الاستقبال توفر الغرفة عبر البريد الإلكتروني أو الهاتف، عادةً خلال ساعات قليلة.",choose_room:"اختر غرفتك",continue:"متابعة",back:"→ رجوع",f_name:"الاسم الكامل",f_phone:"الهاتف",f_arrival:"وقت الوصول المتوقع",f_msg:"رسالة (اختياري)",ph_rvmsg:"طلبات خاصة، الوصول بالباخرة…",send_req:"إرسال طلب الحجز",sending:"جارٍ الإرسال…",done_title:"تم إرسال الطلب!",done_text:"شكراً لك. استلم فريق الاستقبال طلبك وسيتواصل معك قريباً لتأكيد الحجز.",close:"إغلاق",night:"ليلة",nights:"ليالٍ",e_dates:"يرجى اختيار تاريخي وصول ومغادرة صحيحين.",e_room:"يرجى اختيار غرفة.",e_fields:"يرجى إدخال الاسم ورقم هاتف وبريد إلكتروني صحيحين.",e_send:"عذراً، تعذّر إرسال الطلب.",e_mail:"أرسله عبر البريد الإلكتروني",nav_about:"الفندق",nav_rooms:"الغرف",nav_amen:"الخدمات",nav_loc:"الموقع",nav_contact:"اتصل بنا",book:"احجز الآن",
+ ar:{h1t:"على الواجهة البحرية",h1d:"مقابل شاطئ طنجة",h2t:"غرف مطلة على البحر",h2d:"إطلالة على الخليج حتى إسبانيا",h3t:"الفطور",h3d:"7:00–11:00 · غير مشمول في السعر",h4t:"استقبال 24/24",h4d:"العربية · الفرنسية · الإنجليزية · الإسبانية",f_desc:"فندق على الواجهة البحرية بكورنيش طنجة، على بعد خطوات من الشاطئ والمارينا والمدينة القديمة.",f_explore:"اكتشف",f_rights:"جميع الحقوق محفوظة.",rv_title:"احجز غرفتك",rv_sub:"أرسل لنا طلبك. سيرد عليك فريق الاستقبال عبر البريد الإلكتروني لتأكيد التوفر وشرح كيفية دفع العربون. يتم تأكيد حجزك بعد استلام العربون.",rv_policy:"هذا طلب حجز وليس حجزاً مؤكداً. لا يتم أي دفع عبر هذا الموقع.",choose_room:"اختر غرفتك",continue:"متابعة",back:"→ رجوع",f_name:"الاسم الكامل",f_phone:"الهاتف",f_arrival:"وقت الوصول المتوقع",f_msg:"رسالة (اختياري)",ph_rvmsg:"طلبات خاصة، الوصول بالباخرة…",send_req:"إرسال طلب الحجز",sending:"جارٍ الإرسال…",done_title:"تم إرسال الطلب!",done_text:"شكراً لك. استلم فريق الاستقبال طلبك وسيتواصل معك عبر البريد الإلكتروني لتأكيد التوفر وشرح العربون. يتم تأكيد حجزك بعد استلام العربون.",close:"إغلاق",night:"ليلة",nights:"ليالٍ",e_dates:"يرجى اختيار تاريخي وصول ومغادرة صحيحين.",e_room:"يرجى اختيار غرفة.",e_fields:"يرجى إدخال الاسم ورقم هاتف وبريد إلكتروني صحيحين.",e_send:"عذراً، تعذّر إرسال الطلب.",e_mail:"أرسله عبر البريد الإلكتروني",nav_about:"الفندق",nav_rooms:"الغرف",nav_amen:"الخدمات",nav_loc:"الموقع",nav_contact:"اتصل بنا",book:"احجز الآن",
   hero_eyebrow:"كورنيش طنجة · المغرب",hero_title:"استيقظ على إطلالة مضيق جبل طارق",
   hero_lead:"فندق دافئ ومضياف على البحر في شارع محمد السادس — على بعد خطوات من شاطئ طنجة ومارينا طنجة والمدينة القديمة.",
   book_stay:"احجز إقامتك",see_rooms:"اكتشف غرفنا",checkin:"الوصول",checkout:"المغادرة",guests:"عدد الأشخاص",room:"الغرفة",check_avail:"تحقق من التوفر",
@@ -786,7 +786,7 @@ const T = {
   amen_eyebrow:"الخدمات",amen_title:"كل ما تحتاجه لإقامة مريحة",gal_eyebrow:"معرض الصور",gal_title:"نظرة داخل فندق ميرامار",
   a1:"واي فاي مجاني",a1d:"في جميع الغرف والأماكن العامة.",a2:"مطعم",a2d:"مطعم داخل الفندق. الفطور من 7:00 إلى 11:00، غير مشمول في سعر الغرفة.",
   a3:"استقبال 24/24",a3d:"فريق متعدد اللغات، مغادرة سريعة.",a4:"تكييف",a4d:"تحكم فردي في كل غرفة.",
-  a5:"تراس",a5d:"استرخِ في الهواء الطلق مع إطلالة على المتوسط.",a6:"خدمة الغسيل",a6d:"غسيل وكي عند الطلب.",
+  a6:"خدمة الغسيل",a6d:"غسيل وكي عند الطلب.",
   a7:"خدمة الغرف",a7d:"استمتع بوجبتك في راحة غرفتك.",a8:"أمن 24/24",a8d:"دخول بالبطاقة وكاميرات مراقبة.",
   loc_eyebrow:"الموقع",loc_title:"في قلب الكورنيش",loc_p:"168 شارع محمد السادس، طنجة 90000 — شارع الواجهة البحرية بمقاهيه ومطاعمه والشاطئ أمام الباب.",
   d1:"مارينا طنجة",d2:"شاطئ طنجة",d3:"ميناء طنجة المدينة",d4:"السوق الكبير والمدينة القديمة",d5:"محطة قطار طنجة المدينة",d5v:"~5 دقائق بالسيارة",d6:"مطار ابن بطوطة",d6v:"~20 دقيقة بالسيارة",
@@ -895,8 +895,10 @@ $("rv-step2").addEventListener("submit", async e => {
   if (!name || phone.replace(/\D/g,"").length<8 || !/^\S+@\S+\.\S+$/.test(email)) return err("rv-err2", d.e_fields);
   const r=ROOMS.find(x=>x.k===selRoom), btn=$("rv-send"); btn.disabled=true; btn.textContent=d.sending;
   const data = {
-    _subject: `New reservation request — ${name} — ${$("rv-in").value} → ${$("rv-out").value}`,
+    _subject: `Reservation request — ${name} — ${$("rv-in").value} → ${$("rv-out").value}`,
     _template: "table", _captcha: "false", _replyto: email,
+    "Request type": "Reservation request (not confirmed until the deposit is received)",
+    "Next step": "Reply to the guest by email to confirm availability and explain the deposit",
     "Guest name": name, "Phone": phone, "Email": email,
     "Check-in": $("rv-in").value, "Check-out": $("rv-out").value, "Nights": nights(),
     "Guests": $("rv-guests").value, "Room": r.en,

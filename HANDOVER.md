@@ -26,7 +26,8 @@ English, French and Arabic (Arabic switches the page to right-to-left). All text
 - On submit, it POSTs JSON to FormSubmit: `https://formsubmit.co/ajax/hotelmiramartanger@gmail.com`. The hotel receives an email with a table of the details; Reply goes to the guest.
 - FormSubmit needs a one-time activation: after the first real submission from the live site, click "Activate" in the email FormSubmit sends to hotelmiramartanger@gmail.com (check Spam).
 - If sending fails, the guest gets a `mailto:` fallback link.
-- The site says the reception will confirm by email/phone. It is a request, not an instant confirmed booking.
+- The site says the reception replies by email to confirm availability and explain the deposit; the reservation is confirmed once the deposit is received. No payment is taken on the site. The email sent to the hotel is labelled "Reservation request (not confirmed until the deposit is received)".
+- The hotel has no terrace (removed from the site).
 
 ## Settings to edit (top of the `<script>`, `CONFIG` object)
 - `phone`: +212 5 39 30 16 20 (real; a landline).
@@ -35,7 +36,7 @@ English, French and Arabic (Arabic switches the page to right-to-left). All text
 
 ## Facts used on the site (from the hotel's Expedia / Hotels.com listings, to be confirmed by the owner)
 - Check-in 15:00–20:00, check-out until 12:00. Breakfast 07:00–11:00 is NOT included in the room rate (owner confirmed; to confirm: is it served and what does it cost?).
-- Free WiFi, restaurant, 24h reception, A/C, terrace, laundry, room service, 24h security. No on-site parking, no pets, no alcohol served.
+- Free WiFi, restaurant, 24h reception, A/C, laundry, room service, 24h security. No on-site parking, no pets, no alcohol served.
 - Distances: Tanja Marina Bay 200 m, Tangier Beach 300 m, city port 0.7 km, Grand Socco/Medina 1.3 km, airport ~20 min.
 - Room types: Double Sea View (queen bed), Twin Sea View, Twin City View (16 m²), Standard Triple Sea View (3 singles), Superior Triple City View.
 
