@@ -388,7 +388,6 @@
   .dm{border-radius:14px;background-size:cover;background-position:center;background-color:#0c1116}
   .dm-main{grid-column:span 2;aspect-ratio:4/3;background-image:url('images/restaurant.jpg')}
   .dm-b{grid-column:span 2;aspect-ratio:710/395;background-image:url('images/restaurant-view.jpg')}
-  .loc-photo{margin-top:14px;aspect-ratio:760/325;border-radius:16px;background:url('images/restaurant-facade.jpg') center/cover,#0c1116}
   @media (max-width:960px){.dining-grid{grid-template-columns:1fr;gap:28px}.dining-media{order:-1}}
 
   /* ===== V6 — phone redesign: rooms + booking first (screens up to 700px only; desktop unchanged) ===== */
@@ -396,7 +395,7 @@
   @media (max-width:700px){
     :root{--ink:#0b1b27;--navy:#0b1b27;--teal:#0e7490;--teal-d:#0a5a70;--mist:#eef3f6;--gold:#e0a458;--gold-2:#cf9244;--line:#dbe4ea}
     body{display:flex;flex-direction:column;background:var(--ink)}
-    .hero{order:1}.bkwrap{order:2;width:100%}#rooms{order:3}.how{order:4}#about{order:5}#amenities{order:6}.dining{order:6;background:#fff;padding:48px 0}.dining h2{font-size:1.75rem}.dm,.loc-photo{border-radius:16px}#gallery{order:7}#location{order:8}.plan{order:9}#contact{order:10}footer{order:11}
+    .hero{order:1}.bkwrap{order:2;width:100%}#rooms{order:3}.how{order:4}#about{order:5}#amenities{order:6}.dining{order:6;background:#fff;padding:48px 0}.dining h2{font-size:1.75rem}.dm{border-radius:16px}#gallery{order:7}#location{order:8}.plan{order:9}#contact{order:10}footer{order:11}
     section{padding:56px 0}
     .wrap{padding:0 18px}
     h1,h2,h3{color:var(--ink)}
@@ -776,11 +775,8 @@
         <li><span data-i18n="d6">Ibn Battouta Airport</span><span>11 km</span></li>
       </ul>
     </div>
-    <div class="reveal">
-      <iframe class="map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-        src="https://www.google.com/maps?q=Hotel+Miramar,+168+Avenue+Mohamed+VI,+Tanger&output=embed" title="Map"></iframe>
-      <div class="loc-photo" role="img" aria-label="Restaurant Miramar and Hôtel Miramar at night"></div>
-    </div>
+    <iframe class="map reveal" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+      src="https://www.google.com/maps?q=Hotel+Miramar,+168+Avenue+Mohamed+VI,+Tanger&output=embed" title="Map"></iframe>
   </div>
 </section>
 
