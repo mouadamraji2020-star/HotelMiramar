@@ -1042,10 +1042,10 @@ $("rv-step2").addEventListener("submit", async e => {
   try{
     const res = await fetch("https://formsubmit.co/ajax/" + CONFIG.bookingEmail, {method:"POST", headers:{"Content-Type":"application/json","Accept":"application/json"}, body:JSON.stringify(data)});
     const j = await res.json().catch(()=>({}));
-    if (!res.ok || String(j.success)==="false") throw new Error(j.message||"error");
+    if (!res.ok || String(j.success)==="false") throw new Error("FormSubmit " + res.status + ": " + (j.message||"no message"));
     $("rv-main").style.display="none"; $("rv-done").style.display=""; $("rv-step2").reset();
   }catch(ex){
-    err("rv-err2", d.e_send);
+    err("rv-err2", d.e_send + " [" + (ex && ex.message ? ex.message : ex) + "]");
     const a=document.createElement("a"); a.href=`mailto:${CONFIG.bookingEmail}?subject=${encodeURIComponent(data._subject)}&body=${encodeURIComponent(Object.entries(data).filter(([k])=>!k.startsWith("_")).map(([k,v])=>k+": "+v).join("\n"))}`;
     a.textContent=" "+d.e_mail; a.style.cssText="font-weight:500;text-decoration:underline"; $("rv-err2").appendChild(a);
   }finally{ btn.disabled=false; btn.textContent=d.send_req; }
