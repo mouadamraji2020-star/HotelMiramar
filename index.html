@@ -380,6 +380,17 @@
     .fcols{grid-template-columns:1fr}
   }
 
+  /* Room photo sliders */
+  .room-img .rs{position:absolute;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .room-img .rs::-webkit-scrollbar{display:none}
+  .room-img .rs img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;scroll-snap-align:center;display:block}
+  .room-img::after{pointer-events:none}
+  .rb{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:#0c1116;font-size:20px;line-height:1;cursor:pointer;z-index:2;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+  .rb-p{inset-inline-start:10px}.rb-n{inset-inline-end:10px}
+  .rcount{direction:ltr;unicode-bidi:isolate;position:absolute;bottom:10px;inset-inline-end:12px;z-index:2;background:rgba(12,17,22,.72);color:#fff;font:600 .72rem var(--sans);padding:.25em .7em;border-radius:999px}
+  .rb:hover{background:#fff}
+  html[dir="rtl"] .rb{transform:translateY(-50%) scaleX(-1)}
+
   /* Café-restaurant section */
   .dining-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center}
   .dining h2{font-size:clamp(2rem,3.6vw,2.9rem);margin:.3em 0 .5em}
@@ -593,7 +604,7 @@
     </div>
     <div class="rooms">
       <article class="room reveal">
-        <div class="room-img sea" style="--img:url('images/room-double-sea.jpg')"><span class="tag" data-i18n="sea">Sea view</span></div>
+        <div class="room-img sea" data-photos="images/room-double-2.jpg,images/room-double-3.jpg,images/room-double-4.jpg,images/room-double-5.jpg,images/room-double-6.jpg" style="--img:url('images/room-double-sea.jpg')"><span class="tag" data-i18n="sea">Sea view</span></div>
         <div class="room-body">
           <h3 data-i18n="r1_name">Double Room · Sea View</h3>
           <ul><li data-i18n="queen">1 queen bed</li><li data-i18n="sleeps2">Sleeps 2</li><li data-i18n="sea">Sea view</li></ul>
@@ -602,7 +613,7 @@
         </div>
       </article>
       <article class="room reveal">
-        <div class="room-img sea" style="--img:url('images/room-twin-sea.jpg')"><span class="tag" data-i18n="sea">Sea view</span></div>
+        <div class="room-img sea" data-photos="images/room-twin-sea-2.jpg,images/room-twin-sea-3.jpg" style="--img:url('images/room-twin-sea.jpg')"><span class="tag" data-i18n="sea">Sea view</span></div>
         <div class="room-body">
           <h3 data-i18n="r2_name">Twin Room · Sea View</h3>
           <ul><li data-i18n="twin2">2 single beds</li><li data-i18n="sleeps2">Sleeps 2</li><li data-i18n="sea">Sea view</li></ul>
@@ -611,7 +622,7 @@
         </div>
       </article>
       <article class="room reveal">
-        <div class="room-img city" style="--img:url('images/room-twin-city.jpg')"><span class="tag" data-i18n="city">City view</span></div>
+        <div class="room-img city" data-photos="images/room-twin-city-2.jpg,images/room-twin-city-3.jpg" style="--img:url('images/room-twin-city.jpg')"><span class="tag" data-i18n="city">City view</span></div>
         <div class="room-body">
           <h3 data-i18n="r3_name">Twin Room · City View</h3>
           <ul><li data-i18n="twin2">2 single beds</li><li>16 m²</li><li data-i18n="sleeps2">Sleeps 2</li></ul>
@@ -620,7 +631,7 @@
         </div>
       </article>
       <article class="room reveal">
-        <div class="room-img sea" style="--img:url('images/room-triple-sea.jpg')"><span class="tag" data-i18n="sea">Sea view</span></div>
+        <div class="room-img sea" data-photos="images/room-triple-sea-2.jpg,images/room-triple-sea-3.jpg" style="--img:url('images/room-triple-sea.jpg')"><span class="tag" data-i18n="sea">Sea view</span></div>
         <div class="room-body">
           <h3 data-i18n="r4_name">Standard Triple · Sea View</h3>
           <ul><li data-i18n="twin3">3 single beds</li><li data-i18n="sleeps3">Sleeps 3</li><li data-i18n="sea">Sea view</li></ul>
@@ -629,7 +640,7 @@
         </div>
       </article>
       <article class="room reveal">
-        <div class="room-img city" style="--img:url('images/room-triple-city.jpg')"><span class="tag" data-i18n="city">City view</span></div>
+        <div class="room-img city" data-photos="images/room-triple-city-2.jpg" style="--img:url('images/room-triple-city.jpg')"><span class="tag" data-i18n="city">City view</span></div>
         <div class="room-body">
           <h3 data-i18n="r5_name">Superior Triple · City View</h3>
           <ul><li data-i18n="twin3">3 single beds</li><li data-i18n="sleeps3">Sleeps 3</li><li data-i18n="city">City view</li></ul>
@@ -1105,6 +1116,25 @@ $("rv-step2").addEventListener("submit", async e => {
     const a=document.createElement("a"); a.href=`mailto:${CONFIG.bookingEmail}?subject=${encodeURIComponent(data._subject)}&body=${encodeURIComponent(Object.entries(data).filter(([k])=>!k.startsWith("_")).map(([k,v])=>k+": "+v).join("\n"))}`;
     a.textContent=" "+d.e_mail; a.style.cssText="font-weight:500;text-decoration:underline"; $("rv-err2").appendChild(a);
   }finally{ btn.disabled=false; btn.textContent=d.send_req; }
+});
+
+/* Room photo sliders: first photo is the card's own picture, then the extra photos */
+document.querySelectorAll(".room-img[data-photos]").forEach(box => {
+  const first = (getComputedStyle(box).getPropertyValue("--img").match(/url\(["']?(.*?)["']?\)/)||[])[1];
+  const list = [first, ...box.dataset.photos.split(",")].filter(Boolean);
+  if (list.length < 2) return;
+  const rs = document.createElement("div"); rs.className = "rs";
+  rs.innerHTML = list.map((src,i) => `<img src="${src}" alt="" ${i? 'loading="lazy"':''}>`).join("");
+  const cnt = document.createElement("span"); cnt.className = "rcount"; cnt.textContent = "1 / " + list.length;
+  const mk = (cls, ch, label) => { const b = document.createElement("button"); b.type = "button"; b.className = "rb " + cls; b.textContent = ch; b.setAttribute("aria-label", label); return b; };
+  const prev = mk("rb-p", "‹", "Previous photo"), next = mk("rb-n", "›", "Next photo");
+  const rtl = () => document.documentElement.dir === "rtl" ? -1 : 1;
+  const idx = () => Math.round(Math.abs(rs.scrollLeft) / rs.clientWidth);
+  const go = d => { const i = Math.max(0, Math.min(list.length - 1, idx() + d)); rs.scrollTo({left: i * rs.clientWidth * rtl(), behavior: "smooth"}); };
+  prev.onclick = () => go(-1); next.onclick = () => go(1);
+  rs.addEventListener("scroll", () => { cnt.textContent = (idx() + 1) + " / " + list.length; }, {passive:true});
+  box.prepend(rs); box.append(prev, next, cnt);
+  box.querySelector(".tag") && box.append(box.querySelector(".tag"));
 });
 
 /* Room filter chips (phone) */
