@@ -845,6 +845,7 @@
 const CONFIG = {
   phone:    "+212 5 39 30 16 20",   // ← hotel phone number
   email:    "hotelmiramartanger@gmail.com", // ← email shown to guests on the site
+  web3formsKey: "", // ← paste the Web3Forms access key here (it decides which email receives the requests). If empty, FormSubmit is used.
   bookingEmail: "moadamraji2023@gmail.com", // ← TEMPORARY (testing): reservation requests are sent here. For go-live, set to the hotel email.
 };
 
@@ -1040,9 +1041,18 @@ $("rv-step2").addEventListener("submit", async e => {
     "Website language": lang.toUpperCase()
   };
   try{
-    const res = await fetch("https://formsubmit.co/ajax/" + CONFIG.bookingEmail, {method:"POST", headers:{"Content-Type":"application/json","Accept":"application/json"}, body:JSON.stringify(data)});
-    const j = await res.json().catch(()=>({}));
-    if (!res.ok || String(j.success)==="false") throw new Error("FormSubmit " + res.status + ": " + (j.message||"no message"));
+    let res, j, svc;
+    if (CONFIG.web3formsKey) {
+      svc = "Web3Forms";
+      const w = {access_key: CONFIG.web3formsKey, subject: data._subject, from_name: name, email: email, botcheck: ""};
+      Object.entries(data).forEach(([k,v]) => { if (!k.startsWith("_") && k !== "Email") w[k] = String(v); });
+      res = await fetch("https://api.web3forms.com/submit", {method:"POST", headers:{"Content-Type":"application/json","Accept":"application/json"}, body:JSON.stringify(w)});
+    } else {
+      svc = "FormSubmit";
+      res = await fetch("https://formsubmit.co/ajax/" + CONFIG.bookingEmail, {method:"POST", headers:{"Content-Type":"application/json","Accept":"application/json"}, body:JSON.stringify(data)});
+    }
+    j = await res.json().catch(()=>({}));
+    if (!res.ok || String(j.success)==="false") throw new Error(svc + " " + res.status + ": " + (j.message||"no message"));
     $("rv-main").style.display="none"; $("rv-done").style.display=""; $("rv-step2").reset();
   }catch(ex){
     err("rv-err2", d.e_send + " [" + (ex && ex.message ? ex.message : ex) + "]");
