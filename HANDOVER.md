@@ -32,7 +32,8 @@ English, French and Arabic (Arabic switches the page to right-to-left). All text
 ## Settings to edit (top of the `<script>`, `CONFIG` object)
 - `phone`: +212 5 39 30 16 20 (real; a landline).
 - The hotel has NO WhatsApp, so there is no WhatsApp button or form on the site (removed).
-- `email`: hotelmiramartanger@gmail.com (real).
+- `email`: hotelmiramartanger@gmail.com (real; shown on the site).
+- `bookingEmail`: where reservation requests are SENT. TEMPORARILY set to a test address while testing. BEFORE GO-LIVE set it back to hotelmiramartanger@gmail.com and activate FormSubmit for that address.
 
 ## Facts used on the site (from the hotel's Expedia / Hotels.com listings, to be confirmed by the owner)
 - Check-in 15:00–20:00, check-out until 12:00. Breakfast 07:00–11:00 is NOT included in the room rate (owner confirmed; to confirm: is it served and what does it cost?).

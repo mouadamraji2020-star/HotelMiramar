@@ -844,7 +844,8 @@
    ============================================================ */
 const CONFIG = {
   phone:    "+212 5 39 30 16 20",   // ← hotel phone number
-  email:    "hotelmiramartanger@gmail.com", // ← reservations are sent to this email
+  email:    "hotelmiramartanger@gmail.com", // ← email shown to guests on the site
+  bookingEmail: "moadamraji2023@gmail.com", // ← TEMPORARY (testing): reservation requests are sent here. For go-live, set to the hotel email.
 };
 
 const T = {
@@ -1039,13 +1040,13 @@ $("rv-step2").addEventListener("submit", async e => {
     "Website language": lang.toUpperCase()
   };
   try{
-    const res = await fetch("https://formsubmit.co/ajax/" + CONFIG.email, {method:"POST", headers:{"Content-Type":"application/json","Accept":"application/json"}, body:JSON.stringify(data)});
+    const res = await fetch("https://formsubmit.co/ajax/" + CONFIG.bookingEmail, {method:"POST", headers:{"Content-Type":"application/json","Accept":"application/json"}, body:JSON.stringify(data)});
     const j = await res.json().catch(()=>({}));
     if (!res.ok || String(j.success)==="false") throw new Error(j.message||"error");
     $("rv-main").style.display="none"; $("rv-done").style.display=""; $("rv-step2").reset();
   }catch(ex){
     err("rv-err2", d.e_send);
-    const a=document.createElement("a"); a.href=`mailto:${CONFIG.email}?subject=${encodeURIComponent(data._subject)}&body=${encodeURIComponent(Object.entries(data).filter(([k])=>!k.startsWith("_")).map(([k,v])=>k+": "+v).join("\n"))}`;
+    const a=document.createElement("a"); a.href=`mailto:${CONFIG.bookingEmail}?subject=${encodeURIComponent(data._subject)}&body=${encodeURIComponent(Object.entries(data).filter(([k])=>!k.startsWith("_")).map(([k,v])=>k+": "+v).join("\n"))}`;
     a.textContent=" "+d.e_mail; a.style.cssText="font-weight:500;text-decoration:underline"; $("rv-err2").appendChild(a);
   }finally{ btn.disabled=false; btn.textContent=d.send_req; }
 });
