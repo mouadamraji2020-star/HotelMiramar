@@ -1094,6 +1094,15 @@ $("rv-step2").addEventListener("submit", async e => {
     let res, j, svc;
     if (CONFIG.web3formsKey) {
       svc = "Web3Forms";
+      const QR = {
+        en: {subj:"Your reservation request – Hôtel Miramar Tanger",
+          body:`Hello ${name},\n\nThank you for your reservation request at Hôtel Miramar Tanger.\n\nRoom: ${d[r.k+"_name"]}\nCheck-in: ${data["Check-in"]}\nCheck-out: ${data["Check-out"]}\nGuests: ${data["Guests"]}\n\nAvailability: [available / not available]\nTotal price: [amount] MAD for ${data["Nights"]} night(s)\nDeposit to confirm: [amount] MAD, payment method: [details]\n\nYour reservation is confirmed once we receive the deposit.\n\nKind regards,\nHôtel Miramar Tanger\n168 Avenue Mohamed VI, Tangier\nTel: ${CONFIG.phone}`},
+        fr: {subj:"Votre demande de réservation – Hôtel Miramar Tanger",
+          body:`Bonjour ${name},\n\nMerci pour votre demande de réservation à l'Hôtel Miramar Tanger.\n\nChambre : ${d[r.k+"_name"]}\nArrivée : ${data["Check-in"]}\nDépart : ${data["Check-out"]}\nPersonnes : ${data["Guests"]}\n\nDisponibilité : [disponible / non disponible]\nPrix total : [montant] MAD pour ${data["Nights"]} nuit(s)\nAcompte pour confirmer : [montant] MAD, mode de paiement : [détails]\n\nVotre réservation est confirmée dès réception de l'acompte.\n\nCordialement,\nHôtel Miramar Tanger\n168 Avenue Mohamed VI, Tanger\nTél : ${CONFIG.phone}`},
+        ar: {subj:"طلب الحجز – فندق ميرامار طنجة",
+          body:`مرحباً ${name}،\n\nشكراً لطلب الحجز في فندق ميرامار طنجة.\n\nالغرفة: ${d[r.k+"_name"]}\nالوصول: ${data["Check-in"]}\nالمغادرة: ${data["Check-out"]}\nعدد الأشخاص: ${data["Guests"]}\n\nالتوفر: [متوفرة / غير متوفرة]\nالسعر الإجمالي: [المبلغ] درهم لمدة ${data["Nights"]} ليلة\nالعربون للتأكيد: [المبلغ] درهم، طريقة الدفع: [التفاصيل]\n\nيتم تأكيد حجزك بعد استلام العربون.\n\nمع أطيب التحيات،\nفندق ميرامار طنجة\n168 شارع محمد السادس، طنجة\nالهاتف: ${CONFIG.phone}`}
+      }[lang] || null;
+      const quickReply = QR ? "mailto:" + email + "?subject=" + encodeURIComponent(QR.subj) + "&body=" + encodeURIComponent(QR.body) : "-";
       const w = {access_key: CONFIG.web3formsKey, subject: data._subject, from_name: name, email: email, botcheck: "",
         "Request": "New reservation request (not confirmed until the deposit is received)",
         "Guest email (reply to this address)": email,
@@ -1102,7 +1111,8 @@ $("rv-step2").addEventListener("submit", async e => {
         "Guest name": name, "Phone": phone,
         "Estimated arrival": data["Arrival time"], "Message": data["Message"],
         "Website language": data["Website language"],
-        "Action required": "Reply to the guest by email to confirm availability and explain the deposit"};
+        "Action required": "Reply to the guest by email to confirm availability and explain the deposit",
+        "Quick reply (tap this link, it opens a ready email to the guest)": quickReply};
       res = await fetch("https://api.web3forms.com/submit", {method:"POST", headers:{"Content-Type":"application/json","Accept":"application/json"}, body:JSON.stringify(w)});
     } else {
       svc = "FormSubmit";
