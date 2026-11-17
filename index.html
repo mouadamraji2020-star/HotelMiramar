@@ -1044,8 +1044,9 @@ $("rv-step2").addEventListener("submit", async e => {
     let res, j, svc;
     if (CONFIG.web3formsKey) {
       svc = "Web3Forms";
-      const w = {access_key: CONFIG.web3formsKey, subject: data._subject, from_name: "Hôtel Miramar Website", email: email, botcheck: "",
+      const w = {access_key: CONFIG.web3formsKey, subject: data._subject, from_name: name, email: email, botcheck: "",
         "Request": "New reservation request (not confirmed until the deposit is received)",
+        "Guest email (reply to this address)": email,
         "Room": r.en,
         "Check-in": data["Check-in"], "Check-out": data["Check-out"], "Nights": String(data["Nights"]), "Guests": String(data["Guests"]),
         "Guest name": name, "Phone": phone,
