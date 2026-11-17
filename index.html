@@ -380,12 +380,19 @@
     .fcols{grid-template-columns:1fr}
   }
 
+  /* Café-restaurant section */
+  .dining-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center}
+  .dining h2{font-size:clamp(2rem,3.6vw,2.9rem);margin:.3em 0 .5em}
+  .dining p{color:#454c52;margin-bottom:1em}
+  .dining-img{aspect-ratio:4/3;border-radius:16px;background:url('images/restaurant.jpg') center/cover,#0c1116}
+  @media (max-width:960px){.dining-grid{grid-template-columns:1fr;gap:28px}.dining-img{order:-1}}
+
   /* ===== V6 — phone redesign: rooms + booking first (screens up to 700px only; desktop unchanged) ===== */
   .mbar,.how,.rchips{display:none}
   @media (max-width:700px){
     :root{--ink:#0b1b27;--navy:#0b1b27;--teal:#0e7490;--teal-d:#0a5a70;--mist:#eef3f6;--gold:#e0a458;--gold-2:#cf9244;--line:#dbe4ea}
     body{display:flex;flex-direction:column;background:var(--ink)}
-    .hero{order:1}.bkwrap{order:2;width:100%}#rooms{order:3}.how{order:4}#about{order:5}#amenities{order:6}#gallery{order:7}#location{order:8}.plan{order:9}#contact{order:10}footer{order:11}
+    .hero{order:1}.bkwrap{order:2;width:100%}#rooms{order:3}.how{order:4}#about{order:5}#amenities{order:6}.dining{order:6;background:#fff;padding:48px 0}.dining h2{font-size:1.75rem}.dining-img{border-radius:18px}#gallery{order:7}#location{order:8}.plan{order:9}#contact{order:10}footer{order:11}
     section{padding:56px 0}
     .wrap{padding:0 18px}
     h1,h2,h3{color:var(--ink)}
@@ -468,7 +475,7 @@
     .am svg{width:40px;height:40px;background:#e3f3f7;margin-bottom:10px}
     .am h4{font-size:.98rem}.am p{font-size:.8rem}
     .amen .am:last-child:nth-child(odd){grid-column:span 2}
-    #gallery{background:#fff;padding-top:56px!important}
+    #gallery{background:var(--mist);padding-top:56px!important}
     .gallery{gap:8px;grid-auto-rows:130px}
     .loc-bg{background:var(--ink);padding:56px 0}
     .loc-bg>.wrap{background:none;padding:0 18px;margin:0;border-radius:0;width:auto}
@@ -658,6 +665,18 @@
       <div class="am reveal"><svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M6 11h12M9 7v2M9 14v3"/></svg><h4 data-i18n="a9">Minibar</h4><p data-i18n="a9d">In every room.</p></div>
       <div class="am reveal"><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/></svg><h4 data-i18n="a8">24h security</h4><p data-i18n="a8d">Key-card access and security cameras.</p></div>
     </div>
+  </div>
+</section>
+
+<section id="dining" class="dining">
+  <div class="wrap dining-grid">
+    <div class="reveal">
+      <div class="eyebrow" data-i18n="din_eyebrow">Dining</div>
+      <h2 data-i18n="din_title">Café-restaurant on site</h2>
+      <p data-i18n="din_p1">A relaxed, leafy setting to enjoy a coffee or a meal, with large screens to follow the big games.</p>
+      <p data-i18n="din_p2">Breakfast is served 7:00–11:00 and is not included in the room rate.</p>
+    </div>
+    <div class="dining-img reveal" role="img" aria-label="Café-restaurant of Hôtel Miramar Tanger"></div>
   </div>
 </section>
 
@@ -862,6 +881,7 @@ const T = {
   book_stay:"Book your stay",see_rooms:"Discover our rooms",checkin:"Check-in",checkout:"Check-out",guests:"Guests",room:"Room",check_avail:"Check availability",
   about_eyebrow:"Welcome",about_title:"Your stay by the sea in Tangier",
   about_p1:"Hôtel Miramar sits right on the Corniche, across the road from Tangier Beach and a short walk from Tanja Marina Bay. Many of our rooms look straight out over the bay towards Spain.",
+  din_eyebrow:"Dining",din_title:"Café-restaurant on site",din_p1:"A relaxed, leafy setting to enjoy a coffee or a meal, with large screens to follow the big games.",din_p2:"Breakfast is served 7:00–11:00 and is not included in the room rate.",
   about_p3:"One of the best-rated hotels for couples and families, with a café-restaurant on site and panoramic views over the beach and the marina.",
   about_p2:"Our team at reception is here day and night to help with anything — from your arrival by ferry or plane to finding the best way through the Medina.",
   fact1:"rooms over 4 floors",fact2:"to Tangier Beach",fact3:"reception",
@@ -889,6 +909,7 @@ const T = {
   book_stay:"Réserver votre séjour",see_rooms:"Découvrir nos chambres",checkin:"Arrivée",checkout:"Départ",guests:"Personnes",room:"Chambre",check_avail:"Vérifier la disponibilité",
   about_eyebrow:"Bienvenue",about_title:"Votre séjour face à la mer à Tanger",
   about_p1:"L'Hôtel Miramar se trouve sur la Corniche, juste en face de la plage de Tanger et à quelques pas de Tanja Marina Bay. Beaucoup de nos chambres donnent directement sur la baie et l'Espagne.",
+  din_eyebrow:"Restauration",din_title:"Café-restaurant sur place",din_p1:"Un cadre détendu et verdoyant pour savourer un café ou un repas, avec de grands écrans pour suivre les grands matchs.",din_p2:"Le petit-déjeuner est servi de 7h à 11h et n'est pas inclus dans le tarif de la chambre.",
   about_p3:"L'un des hôtels les mieux notés pour les couples et les familles, avec un café-restaurant sur place et une vue panoramique sur la plage et la marina.",
   about_p2:"Notre réception vous accueille jour et nuit — de votre arrivée en ferry ou en avion jusqu'aux meilleurs conseils pour découvrir la Médina.",
   fact1:"chambres sur 4 étages",fact2:"de la plage",fact3:"réception",
@@ -916,6 +937,7 @@ const T = {
   book_stay:"احجز إقامتك",see_rooms:"اكتشف غرفنا",checkin:"الوصول",checkout:"المغادرة",guests:"عدد الأشخاص",room:"الغرفة",check_avail:"تحقق من التوفر",
   about_eyebrow:"مرحباً بكم",about_title:"إقامتك على البحر في طنجة",
   about_p1:"يقع فندق ميرامار على الكورنيش مباشرة، مقابل شاطئ طنجة وعلى بعد خطوات من مارينا طنجة. تطل العديد من غرفنا على الخليج نحو إسبانيا.",
+  din_eyebrow:"المطعم",din_title:"مقهى ومطعم داخل الفندق",din_p1:"أجواء هادئة تغمرها النباتات الخضراء للاستمتاع بقهوة أو وجبة، مع شاشات كبيرة لمتابعة المباريات الكبرى.",din_p2:"يُقدَّم الفطور من 7:00 إلى 11:00 وهو غير مشمول في سعر الغرفة.",
   about_p3:"من أعلى الفنادق تقييماً للأزواج والعائلات، مع مقهى ومطعم داخل الفندق وإطلالة بانورامية على الشاطئ والمارينا.",
   about_p2:"فريق الاستقبال في خدمتكم ليلاً ونهاراً — من وصولكم بالباخرة أو الطائرة إلى أفضل النصائح لزيارة المدينة القديمة.",
   fact1:"غرفة على 4 طوابق",fact2:"من شاطئ طنجة",fact3:"استقبال",
