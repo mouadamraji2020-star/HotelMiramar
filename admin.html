@@ -1,149 +1,184 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>Admin — Hôtel Miramar</title>
 <style>
-  :root{--ink:#0b1b27;--teal:#0e7490;--teal-d:#0a5a70;--mist:#eef3f6;--line:#dbe4ea;--muted:#66707a;--ok:#1f9d55;--bad:#c0392b;--gold:#e0a458}
+  :root{--ink:#0b1b27;--teal:#0e7490;--teal-d:#0a5a70;--teal-l:#e3f3f7;--mist:#eef3f6;--line:#dbe4ea;--muted:#66707a;--ok:#1f9d55;--bad:#c0392b;--gold:#e0a458;--navy2:#173a52}
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--mist);color:var(--ink);line-height:1.5}
-  header{background:var(--ink);color:#fff;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:0;z-index:5}
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans Arabic","Noto Kufi Arabic",Tahoma,sans-serif;background:var(--mist);color:var(--ink);line-height:1.5}
+  header{background:var(--ink);color:#fff;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;position:sticky;top:0;z-index:5;flex-wrap:wrap}
   header b{font-size:1.05rem}
   header small{display:block;opacity:.65;font-size:.72rem;letter-spacing:.08em}
-  .hbtns{display:flex;gap:8px;align-items:center}
+  .hbtns{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .langsw{display:flex;gap:3px;background:rgba(255,255,255,.12);border-radius:999px;padding:3px}
+  .langsw button{background:none;border:0;color:#fff;font:600 .78rem inherit;padding:.4em .8em;border-radius:999px;cursor:pointer}
+  .langsw button.on{background:#fff;color:var(--ink)}
   a.btn,button.btn{display:inline-block;border:0;border-radius:10px;padding:.65em 1.1em;font:600 .9rem inherit;cursor:pointer;background:var(--teal);color:#fff;text-decoration:none}
   .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.4);color:#fff}
   .btn.light{background:#fff;color:var(--ink);border:1px solid var(--line)}
-  main{max-width:960px;margin:0 auto;padding:18px}
-  .card{background:#fff;border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(11,27,39,.06)}
-  h2{font-size:1.15rem;margin-bottom:4px}
+  main{max-width:1000px;margin:0 auto;padding:18px}
+  .card{background:#fff;border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(11,27,39,.06);border:1px solid rgba(11,27,39,.04)}
+  h2{font-size:1.1rem;margin-bottom:4px}
   .sub{color:var(--muted);font-size:.88rem;margin-bottom:14px}
   .tabs{display:flex;gap:8px;margin-bottom:16px}
   .tab{flex:1;padding:.8em;border-radius:12px;border:1px solid var(--line);background:#fff;font:600 .95rem inherit;cursor:pointer;color:var(--ink)}
   .tab.on{background:var(--ink);color:#fff;border-color:var(--ink)}
   label.f{display:block;font-size:.78rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:12px 0 4px}
+  [dir=rtl] label.f{letter-spacing:0}
   input[type=email],input[type=password],textarea,select{width:100%;padding:.75em .9em;border:1px solid var(--line);border-radius:10px;font:inherit;background:#fff;color:var(--ink)}
+  input[type=email]{direction:ltr;text-align:start}
   textarea{min-height:64px;resize:vertical}
   .msg{padding:12px 14px;border-radius:10px;font-size:.9rem;margin-top:12px}
-  .msg.err{background:#fbe9e4;color:#8a2f13}.msg.info{background:#e3f3f7;color:#0a4a5c}
+  .msg.err{background:#fbe9e4;color:#8a2f13}.msg.info{background:var(--teal-l);color:#0a4a5c}
   .hide{display:none!important}
   /* switches */
   .row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 0;border-bottom:1px solid var(--line)}
   .row:last-child{border-bottom:0}
   .row small{display:block;color:var(--muted);font-size:.8rem}
-  .sw{position:relative;width:52px;height:30px;flex:none}
+  .sw{position:relative;width:52px;height:30px;flex:none;direction:ltr}
   .sw input{opacity:0;width:100%;height:100%;position:absolute;inset:0;cursor:pointer;z-index:2;margin:0}
   .sw i{position:absolute;inset:0;border-radius:30px;background:#c5ced5;transition:.2s}
   .sw i::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.3)}
   .sw input:checked+i{background:var(--ok)}
   .sw input:checked+i::after{transform:translateX(22px)}
-  .toast{position:fixed;left:50%;top:78px;transform:translate(-50%,-14px);display:flex;align-items:center;gap:10px;width:max-content;max-width:calc(100vw - 32px);background:#e8f6ee;color:#14663a;border:1px solid #b9e3cb;padding:10px 18px 10px 12px;border-radius:14px;font:600 .92rem system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;box-shadow:0 8px 24px rgba(11,27,39,.14);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:20}
+  .toast{position:fixed;left:50%;top:78px;transform:translate(-50%,-14px);display:flex;align-items:center;gap:10px;width:max-content;max-width:calc(100vw - 32px);background:#e8f6ee;color:#14663a;border:1px solid #b9e3cb;padding:10px 18px 10px 12px;border-radius:14px;font:600 .92rem inherit;box-shadow:0 8px 24px rgba(11,27,39,.14);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:20}
   .toast::before{content:"✓";flex:none;width:24px;height:24px;border-radius:50%;background:var(--ok);color:#fff;display:grid;place-items:center;font-size:.9rem;line-height:1}
   .toast.err{background:#fdecea;color:#8a2f13;border-color:#f3c3ba}
   .toast.err::before{content:"!";background:var(--bad)}
   .toast.show{opacity:1;transform:translate(-50%,0)}
-  /* stats */
-  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:16px}
-  .kpi{background:#fff;border-radius:14px;padding:16px}
-  .kpi b{display:block;font-size:1.8rem;line-height:1.1}
-  .kpi span{font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
-  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  @media(max-width:700px){.grid2{grid-template-columns:1fr}}
-  .bar{display:grid;grid-template-columns:minmax(80px,38%) 1fr auto;gap:10px;align-items:center;margin:7px 0;font-size:.88rem}
+  /* ---------- statistics ---------- */
+  .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:14px}
+  .seg{display:flex;background:#fff;border:1px solid var(--line);border-radius:12px;padding:3px;gap:2px}
+  .seg button{border:0;background:none;padding:.55em 1em;border-radius:9px;font:600 .88rem inherit;color:var(--muted);cursor:pointer}
+  .seg button.on{background:var(--ink);color:#fff}
+  .tools{display:flex;gap:8px;flex-wrap:wrap}
+  .btn.sm{padding:.55em .9em;font-size:.85rem}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:16px}
+  .kpi{background:#fff;border-radius:16px;padding:16px;border:1px solid rgba(11,27,39,.04);box-shadow:0 1px 3px rgba(11,27,39,.06)}
+  .kpi span.l{font-size:.74rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;display:block}
+  [dir=rtl] .kpi span.l{letter-spacing:0}
+  .kpi b{display:block;font-size:2rem;line-height:1.15;margin:4px 0 2px}
+  .chip{display:inline-block;font-size:.76rem;font-weight:700;padding:.15em .55em;border-radius:999px;background:var(--mist);color:var(--muted)}
+  .chip.up{background:#e3f6ea;color:#14663a}.chip.down{background:#fdecea;color:#a4281a}
+  .kpi small{color:var(--muted);font-size:.72rem;margin-inline-start:4px}
+  .spark{display:block;width:100%;height:30px;margin-top:8px}
+  .insights{background:linear-gradient(135deg,#0b1b27,#173a52);color:#fff;border:0}
+  .insights h2{color:#fff}
+  .insights ul{list-style:none;margin-top:8px}
+  .insights li{padding:7px 0 7px 22px;position:relative;font-size:.93rem;border-top:1px solid rgba(255,255,255,.12)}
+  [dir=rtl] .insights li{padding:7px 22px 7px 0}
+  .insights li:first-child{border-top:0}
+  .insights li::before{content:"";position:absolute;inset-inline-start:2px;top:15px;width:8px;height:8px;border-radius:50%;background:var(--gold)}
+  .grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+  .grid2>*,.card{min-width:0}
+  @media(max-width:760px){.grid2{grid-template-columns:minmax(0,1fr)}}
+  .legend{display:flex;gap:14px;font-size:.8rem;color:var(--muted);margin:2px 0 6px;flex-wrap:wrap}
+  .legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-inline-end:5px;vertical-align:-1px}
+  .chartbox{position:relative;direction:ltr}
+  .chartbox svg{display:block;width:100%;height:auto}
+  .tip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font-size:.76rem;padding:6px 10px;border-radius:8px;white-space:nowrap;transform:translate(-50%,-10%);opacity:0;transition:opacity .1s;z-index:3;direction:ltr}
+  .tip.show{opacity:1}
+  .funnel .st{margin:10px 0}
+  .funnel .top{display:flex;justify-content:space-between;font-size:.88rem;margin-bottom:4px;gap:10px}
+  .funnel .top em{font-style:normal;color:var(--muted);font-size:.8rem}
+  .funnel .t{height:14px;background:var(--mist);border-radius:8px;overflow:hidden}
+  .funnel .t i{display:block;height:100%;border-radius:8px;background:linear-gradient(90deg,var(--teal),#2fa3c0)}
+  .donutwrap{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .donutwrap svg{width:130px;height:130px;flex:none}
+  .dl{flex:1;min-width:130px;font-size:.88rem}
+  .dl div{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:4px 0}
+  .dl span i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-inline-end:8px}
+  .dl em{font-style:normal;color:var(--muted);font-size:.82rem}
+  .bar{display:grid;grid-template-columns:minmax(80px,38%) 1fr auto;gap:10px;align-items:center;margin:8px 0;font-size:.88rem}
   .bar .t{height:10px;background:var(--mist);border-radius:6px;overflow:hidden}
   .bar .t i{display:block;height:100%;background:var(--teal);border-radius:6px}
   .bar em{font-style:normal;color:var(--muted);font-size:.82rem}
-  .days{display:flex;align-items:flex-end;gap:3px;height:120px;margin-top:6px}
-  .days div{flex:1;background:var(--teal);border-radius:3px 3px 0 0;min-height:2px;position:relative}
-  .days div:hover::after{content:attr(data-t);position:absolute;bottom:100%;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;font-size:.7rem;padding:2px 6px;border-radius:5px;white-space:nowrap;margin-bottom:4px}
-  .axis{display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);margin-top:4px}
-  table{width:100%;border-collapse:collapse;font-size:.85rem}
-  th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}
+  .cols{display:flex;align-items:flex-end;gap:3px;height:96px;direction:ltr}
+  .cols div{flex:1;background:var(--teal);border-radius:3px 3px 0 0;min-height:2px;opacity:.85;position:relative}
+  .cols div.pk{background:var(--gold);opacity:1}
+  .cols div:hover::after{content:attr(data-t);position:absolute;bottom:100%;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;font-size:.7rem;padding:2px 6px;border-radius:5px;white-space:nowrap;margin-bottom:4px;z-index:2}
+  .axis{display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);margin-top:4px;direction:ltr}
+  table{width:100%;min-width:520px;border-collapse:collapse;font-size:.86rem}
+  td{white-space:nowrap}
+  th,td{text-align:start;padding:9px 6px;border-bottom:1px solid var(--line)}
   th{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+  [dir=rtl] th{letter-spacing:0}
   .empty{color:var(--muted);font-size:.88rem;padding:6px 0}
+  @media(max-width:600px){header{position:static}.toast{top:16px}}
+  .skel{height:90px;border-radius:14px;background:linear-gradient(90deg,#e6edf1,#f3f6f8,#e6edf1);background-size:200% 100%;animation:sk 1.2s infinite}
+  @keyframes sk{to{background-position:-200% 0}}
 </style>
 </head>
 <body>
 
 <header>
-  <div><b>Hôtel Miramar</b><small>ADMIN</small></div>
-  <div class="hbtns hide" id="hbtns">
-    <a class="btn ghost" href="index.html" target="_blank" rel="noopener">View site</a>
-    <button class="btn ghost" id="logout" type="button">Sign out</button>
+  <div><b>Hôtel Miramar</b><small data-i18n="admin">ADMIN</small></div>
+  <div class="hbtns">
+    <div class="langsw" id="langsw"><button type="button" data-l="en">EN</button><button type="button" data-l="fr">FR</button><button type="button" data-l="ar">ع</button></div>
+    <span class="hbtns hide" id="hbtns">
+      <a class="btn ghost" href="index.html" target="_blank" rel="noopener" data-i18n="view_site">View site</a>
+      <button class="btn ghost" id="logout" type="button" data-i18n="sign_out">Sign out</button>
+    </span>
   </div>
 </header>
 
 <main>
-  <!-- not configured -->
   <section class="card hide" id="nocfg">
-    <h2>Not connected yet</h2>
-    <p class="sub">The admin page needs the hotel's Supabase connection. Open <b>config.js</b> and fill in the project URL and the anon key (the setup guide explains where to find them).</p>
+    <h2 data-i18n="nocfg_title">Not connected yet</h2>
+    <p class="sub" data-i18n="nocfg_text">The admin page needs the hotel's Supabase connection. Fill in config.js.</p>
   </section>
 
-  <!-- login -->
-  <section class="card hide" id="login">
-    <h2>Sign in</h2>
-    <p class="sub">Only the hotel owner can sign in here.</p>
+  <section class="card hide" id="login" style="max-width:460px;margin-inline:auto">
+    <h2 data-i18n="sign_in">Sign in</h2>
+    <p class="sub" data-i18n="sign_in_sub">Only the hotel owner can sign in here.</p>
     <form id="loginForm">
-      <label class="f" for="em">E-mail</label>
+      <label class="f" for="em" data-i18n="email">E-mail</label>
       <input id="em" type="email" autocomplete="username" required>
-      <label class="f" for="pw">Password</label>
+      <label class="f" for="pw" data-i18n="password">Password</label>
       <input id="pw" type="password" autocomplete="current-password" required>
-      <p style="margin-top:14px"><button class="btn" type="submit" id="loginBtn">Sign in</button></p>
+      <p style="margin-top:14px"><button class="btn" type="submit" id="loginBtn" data-i18n="sign_in">Sign in</button></p>
       <div class="msg err hide" id="loginErr"></div>
     </form>
   </section>
 
-  <!-- app -->
   <div class="hide" id="app">
     <div class="tabs">
-      <button class="tab on" data-tab="controls" type="button">Controls</button>
-      <button class="tab" data-tab="stats" type="button">Statistics</button>
+      <button class="tab on" data-tab="controls" type="button" data-i18n="tab_controls">Controls</button>
+      <button class="tab" data-tab="stats" type="button" data-i18n="tab_stats">Statistics</button>
     </div>
 
-    <!-- CONTROLS -->
     <div id="tab-controls">
+      <section class="card"><h2 data-i18n="res_title">Reservations</h2><p class="sub" data-i18n="res_sub"></p><div id="grp-res"></div></section>
+      <section class="card"><h2 data-i18n="sec_title">Sections of the website</h2><p class="sub" data-i18n="sec_sub"></p><div id="grp-sec"></div></section>
+      <section class="card"><h2 data-i18n="room_title">Rooms</h2><p class="sub" data-i18n="room_sub"></p><div id="grp-room"></div></section>
       <section class="card">
-        <h2>Reservations</h2>
-        <p class="sub">Changes are saved at once and appear on the website within seconds.</p>
-        <div id="grp-res"></div>
-      </section>
-      <section class="card">
-        <h2>Sections of the website</h2>
-        <p class="sub">Switch a section off to hide it, together with its menu link.</p>
-        <div id="grp-sec"></div>
-      </section>
-      <section class="card">
-        <h2>Rooms</h2>
-        <p class="sub">Switch a room off when it is full or closed. It disappears from the website and from the booking form.</p>
-        <div id="grp-room"></div>
-      </section>
-      <section class="card">
-        <h2>Announcement banner</h2>
-        <p class="sub">A coloured bar at the very top of the website, for example a holiday notice.</p>
+        <h2 data-i18n="banner_title">Announcement banner</h2><p class="sub" data-i18n="banner_sub"></p>
         <div id="grp-banner"></div>
-        <label class="f" for="b_en">Message in English</label><textarea id="b_en" maxlength="140"></textarea>
-        <label class="f" for="b_fr">Message in French</label><textarea id="b_fr" maxlength="140"></textarea>
-        <label class="f" for="b_ar">Message in Arabic</label><textarea id="b_ar" maxlength="140" dir="rtl"></textarea>
-        <p style="margin-top:12px"><button class="btn" id="saveBanner" type="button">Save banner text</button></p>
+        <label class="f" for="b_en" data-i18n="banner_en_lbl">Message in English</label><textarea id="b_en" maxlength="140"></textarea>
+        <label class="f" for="b_fr" data-i18n="banner_fr_lbl">Message in French</label><textarea id="b_fr" maxlength="140"></textarea>
+        <label class="f" for="b_ar" data-i18n="banner_ar_lbl">Message in Arabic</label><textarea id="b_ar" maxlength="140" dir="rtl"></textarea>
+        <p style="margin-top:12px"><button class="btn" id="saveBanner" type="button" data-i18n="banner_save">Save banner text</button></p>
       </section>
     </div>
 
-    <!-- STATS -->
     <div class="hide" id="tab-stats">
-      <section class="card">
-        <label class="f" for="period" style="margin-top:0">Period</label>
-        <select id="period">
-          <option value="1">Today</option>
-          <option value="7" selected>Last 7 days</option>
-          <option value="30">Last 30 days</option>
-          <option value="90">Last 90 days</option>
-        </select>
-        <p class="sub" style="margin:10px 0 0">Anonymous numbers only. No names, e-mails or phone numbers are stored. The details of each request are in your e-mail.</p>
-      </section>
+      <div class="toolbar">
+        <div class="seg" id="period">
+          <button type="button" data-d="1" data-i18n="p_today">Today</button>
+          <button type="button" data-d="7" class="on" data-i18n="p_7">7 days</button>
+          <button type="button" data-d="30" data-i18n="p_30">30 days</button>
+          <button type="button" data-d="90" data-i18n="p_90">90 days</button>
+        </div>
+        <div class="tools">
+          <button class="btn light sm" id="refreshBtn" type="button" data-i18n="refresh">Refresh</button>
+          <button class="btn light sm" id="csvBtn" type="button" data-i18n="download">Download data (CSV)</button>
+        </div>
+      </div>
       <div id="statsBody"></div>
+      <p class="sub" style="text-align:center;margin-top:6px" data-i18n="privacy">Anonymous numbers only.</p>
     </div>
   </div>
 </main>
@@ -151,18 +186,97 @@
 
 <script src="config.js"></script>
 <script>
+/* ======================= translations ======================= */
+const I18N = {
+en:{admin:"ADMIN",view_site:"View site",sign_out:"Sign out",sign_in:"Sign in",sign_in_sub:"Only the hotel owner can sign in here.",email:"E-mail",password:"Password",
+ nocfg_title:"Not connected yet",nocfg_text:"The admin page needs the hotel's Supabase connection. Open config.js and fill in the project URL and the key.",err_login:"Wrong e-mail or password.",
+ tab_controls:"Controls",tab_stats:"Statistics",
+ res_title:"Reservations",res_sub:"Changes are saved at once and appear on the website within seconds.",res_on:"Accept online reservation requests",res_on_hint:"When off, “Book now” shows a “please call us” message instead of the form.",
+ sec_title:"Sections of the website",sec_sub:"Switch a section off to hide it, together with its menu link.",
+ sec_about:"About / Welcome",sec_rooms:"Rooms (and “How booking works”)",sec_amenities:"Services",sec_dining:"Café-restaurant",sec_gallery:"Gallery",sec_location:"Location",sec_plan:"Plan your stay (house rules)",sec_contact:"Contact",
+ room_title:"Rooms",room_sub:"Switch a room off when it is full or closed. It disappears from the website and from the booking form.",
+ room_r1:"Double Room · Sea View",room_r2:"Twin Room · Sea View",room_r3:"Twin Room · City View",room_r4:"Standard Triple · Sea View",room_r5:"Superior Triple · City View",
+ banner_title:"Announcement banner",banner_sub:"A coloured bar at the very top of the website, for example a holiday notice.",banner_show:"Show the banner",banner_en_lbl:"Message in English",banner_fr_lbl:"Message in French",banner_ar_lbl:"Message in Arabic",banner_save:"Save banner text",
+ saved:"Saved",banner_saved:"Banner text saved",err_save:"Not saved ({n}). Are you signed in with the admin e-mail?",err_read:"Could not read the data ({n}).",
+ p_today:"Today",p_7:"7 days",p_30:"30 days",p_90:"90 days",refresh:"Refresh",download:"Download data (CSV)",privacy:"Anonymous numbers only. No names, e-mails or phone numbers are stored. The details of each request are in your e-mail inbox.",
+ kpi_visits:"Page visits",kpi_visitors:"Visitors",kpi_taps:"“Book” taps",kpi_requests:"Requests sent",kpi_conv:"Visitor → request rate",vs_prev:"vs previous period",is_new:"new",
+ insights_title:"What the numbers say",ins_none:"Not enough data yet to give advice. Come back after a few days of visits.",
+ ins_lang:"Most visitors read the site in {x} ({p}).",ins_device:"{x} is the main device ({p} of visits).",ins_hour:"Busiest time of day: around {h}.",ins_room:"Best-converting room: {r}. {p} of its “Book” taps became requests.",
+ ins_reach:"{p} of visitors scrolled down to the rooms.",ins_drop:"Visits are {p} lower than the previous period.",ins_up:"Visits are {p} higher than the previous period.",ins_noreq:"No reservation request was sent in this period.",
+ chart_title:"Visits and requests",lg_visits:"Visits",lg_requests:"Requests",tip_visits:"visits",tip_requests:"requests",
+ funnel_title:"From visit to request",f_visitors:"Visitors",f_rooms:"Scrolled to the rooms",f_taps:"Tapped “Book”",f_sent:"Sent a request",of_visitors:"of visitors",
+ lang_title:"Languages",dev_title:"Devices",src_title:"Where visitors come from",reach_title:"Sections reached by visitors",rooms_title:"Room performance",
+ col_room:"Room",col_taps:"Taps",col_req:"Requests",col_conv:"Conversion",hours_title:"Busiest hours of the day",days_title:"Busiest days of the week",
+ latest_title:"Latest requests sent",col_when:"When",col_nights:"Nights",col_guests:"Guests",col_lang:"Language",col_device:"Device",no_data:"No data yet.",no_requests:"No requests in this period.",
+ nodata_msg:"No data for this period yet. If the website has been connected for a while and you still see nothing, check that you signed in with the admin e-mail.",
+ direct:"Direct / unknown",phone:"Phone",tablet:"Tablet",computer:"Computer",l_en:"English",l_fr:"French",l_ar:"Arabic",
+ s_about:"The hotel",s_rooms:"Rooms",s_amenities:"Services",s_dining:"Restaurant",s_gallery:"Gallery",s_location:"Location",s_contact:"Contact"},
+fr:{admin:"ADMINISTRATION",view_site:"Voir le site",sign_out:"Se déconnecter",sign_in:"Se connecter",sign_in_sub:"Seul le propriétaire de l'hôtel peut se connecter ici.",email:"E-mail",password:"Mot de passe",
+ nocfg_title:"Pas encore connecté",nocfg_text:"La page d'administration a besoin de la connexion Supabase de l'hôtel. Ouvrez config.js et renseignez l'URL du projet et la clé.",err_login:"E-mail ou mot de passe incorrect.",
+ tab_controls:"Réglages",tab_stats:"Statistiques",
+ res_title:"Réservations",res_sub:"Les changements sont enregistrés immédiatement et apparaissent sur le site en quelques secondes.",res_on:"Accepter les demandes de réservation en ligne",res_on_hint:"Si désactivé, « Réserver » affiche un message « appelez-nous » à la place du formulaire.",
+ sec_title:"Sections du site",sec_sub:"Désactivez une section pour la masquer, ainsi que son lien dans le menu.",
+ sec_about:"L'hôtel / Bienvenue",sec_rooms:"Chambres (et « Comment réserver »)",sec_amenities:"Services",sec_dining:"Café-restaurant",sec_gallery:"Galerie",sec_location:"Accès",sec_plan:"Préparez votre séjour (règlement)",sec_contact:"Contact",
+ room_title:"Chambres",room_sub:"Désactivez une chambre lorsqu'elle est complète ou fermée. Elle disparaît du site et du formulaire de réservation.",
+ room_r1:"Chambre Double · Vue Mer",room_r2:"Chambre Twin · Vue Mer",room_r3:"Chambre Twin · Vue Ville",room_r4:"Triple Standard · Vue Mer",room_r5:"Triple Supérieure · Vue Ville",
+ banner_title:"Bandeau d'annonce",banner_sub:"Une barre colorée tout en haut du site, par exemple pour un avis de fermeture.",banner_show:"Afficher le bandeau",banner_en_lbl:"Message en anglais",banner_fr_lbl:"Message en français",banner_ar_lbl:"Message en arabe",banner_save:"Enregistrer le texte du bandeau",
+ saved:"Enregistré",banner_saved:"Texte du bandeau enregistré",err_save:"Non enregistré ({n}). Êtes-vous connecté avec l'e-mail administrateur ?",err_read:"Impossible de lire les données ({n}).",
+ p_today:"Aujourd'hui",p_7:"7 jours",p_30:"30 jours",p_90:"90 jours",refresh:"Actualiser",download:"Télécharger les données (CSV)",privacy:"Chiffres anonymes uniquement. Aucun nom, e-mail ni téléphone n'est enregistré. Le détail de chaque demande se trouve dans votre boîte e-mail.",
+ kpi_visits:"Visites",kpi_visitors:"Visiteurs",kpi_taps:"Clics sur « Réserver »",kpi_requests:"Demandes envoyées",kpi_conv:"Taux visiteur → demande",vs_prev:"vs période précédente",is_new:"nouveau",
+ insights_title:"Ce que disent les chiffres",ins_none:"Pas encore assez de données pour donner des conseils. Revenez après quelques jours de visites.",
+ ins_lang:"La plupart des visiteurs lisent le site en {x} ({p}).",ins_device:"{x} est l'appareil principal ({p} des visites).",ins_hour:"Moment le plus actif de la journée : vers {h}.",ins_room:"Chambre qui convertit le mieux : {r}. {p} de ses clics sur « Réserver » sont devenus des demandes.",
+ ins_reach:"{p} des visiteurs sont descendus jusqu'aux chambres.",ins_drop:"Les visites sont en baisse de {p} par rapport à la période précédente.",ins_up:"Les visites sont en hausse de {p} par rapport à la période précédente.",ins_noreq:"Aucune demande de réservation n'a été envoyée sur cette période.",
+ chart_title:"Visites et demandes",lg_visits:"Visites",lg_requests:"Demandes",tip_visits:"visites",tip_requests:"demandes",
+ funnel_title:"De la visite à la demande",f_visitors:"Visiteurs",f_rooms:"Descendus jusqu'aux chambres",f_taps:"Clic sur « Réserver »",f_sent:"Demande envoyée",of_visitors:"des visiteurs",
+ lang_title:"Langues",dev_title:"Appareils",src_title:"D'où viennent les visiteurs",reach_title:"Sections atteintes par les visiteurs",rooms_title:"Performance des chambres",
+ col_room:"Chambre",col_taps:"Clics",col_req:"Demandes",col_conv:"Conversion",hours_title:"Heures les plus actives",days_title:"Jours les plus actifs de la semaine",
+ latest_title:"Dernières demandes envoyées",col_when:"Date",col_nights:"Nuits",col_guests:"Personnes",col_lang:"Langue",col_device:"Appareil",no_data:"Pas encore de données.",no_requests:"Aucune demande sur cette période.",
+ nodata_msg:"Pas encore de données pour cette période. Si le site est connecté depuis un moment et que vous ne voyez rien, vérifiez que vous êtes connecté avec l'e-mail administrateur.",
+ direct:"Direct / inconnu",phone:"Téléphone",tablet:"Tablette",computer:"Ordinateur",l_en:"Anglais",l_fr:"Français",l_ar:"Arabe",
+ s_about:"L'hôtel",s_rooms:"Chambres",s_amenities:"Services",s_dining:"Restaurant",s_gallery:"Galerie",s_location:"Accès",s_contact:"Contact"},
+ar:{admin:"لوحة الإدارة",view_site:"عرض الموقع",sign_out:"تسجيل الخروج",sign_in:"تسجيل الدخول",sign_in_sub:"يمكن لمالك الفندق فقط تسجيل الدخول هنا.",email:"البريد الإلكتروني",password:"كلمة المرور",
+ nocfg_title:"غير متصل بعد",nocfg_text:"تحتاج لوحة الإدارة إلى اتصال الفندق بـ Supabase. افتح الملف config.js وأدخل رابط المشروع والمفتاح.",err_login:"البريد الإلكتروني أو كلمة المرور غير صحيحة.",
+ tab_controls:"الإعدادات",tab_stats:"الإحصائيات",
+ res_title:"الحجوزات",res_sub:"تُحفظ التغييرات فوراً وتظهر على الموقع خلال ثوانٍ.",res_on:"قبول طلبات الحجز عبر الإنترنت",res_on_hint:"عند الإيقاف، يعرض زر «احجز الآن» رسالة «يرجى الاتصال بنا» بدل النموذج.",
+ sec_title:"أقسام الموقع",sec_sub:"أوقف القسم لإخفائه مع رابطه في القائمة.",
+ sec_about:"الفندق / مرحباً بكم",sec_rooms:"الغرف (و«كيف تحجز»)",sec_amenities:"الخدمات",sec_dining:"المقهى والمطعم",sec_gallery:"معرض الصور",sec_location:"الموقع",sec_plan:"خطط لإقامتك (قواعد الفندق)",sec_contact:"اتصل بنا",
+ room_title:"الغرف",room_sub:"أوقف الغرفة عندما تكون ممتلئة أو مغلقة. ستختفي من الموقع ومن نموذج الحجز.",
+ room_r1:"غرفة مزدوجة · إطلالة على البحر",room_r2:"غرفة بسريرين · إطلالة على البحر",room_r3:"غرفة بسريرين · إطلالة على المدينة",room_r4:"غرفة ثلاثية عادية · إطلالة على البحر",room_r5:"غرفة ثلاثية ممتازة · إطلالة على المدينة",
+ banner_title:"شريط الإعلان",banner_sub:"شريط ملوّن في أعلى الموقع تماماً، مثلاً لإشعار عطلة.",banner_show:"إظهار الشريط",banner_en_lbl:"الرسالة بالإنجليزية",banner_fr_lbl:"الرسالة بالفرنسية",banner_ar_lbl:"الرسالة بالعربية",banner_save:"حفظ نص الشريط",
+ saved:"تم الحفظ",banner_saved:"تم حفظ نص الشريط",err_save:"لم يتم الحفظ ({n}). هل سجّلت الدخول بالبريد الإلكتروني الخاص بالمدير؟",err_read:"تعذّرت قراءة البيانات ({n}).",
+ p_today:"اليوم",p_7:"7 أيام",p_30:"30 يوماً",p_90:"90 يوماً",refresh:"تحديث",download:"تنزيل البيانات (CSV)",privacy:"أرقام مجهولة الهوية فقط. لا تُخزَّن أسماء ولا بريد إلكتروني ولا أرقام هاتف. تفاصيل كل طلب موجودة في بريدك الإلكتروني.",
+ kpi_visits:"زيارات الصفحة",kpi_visitors:"الزوار",kpi_taps:"نقرات «احجز»",kpi_requests:"الطلبات المرسلة",kpi_conv:"نسبة زائر ← طلب",vs_prev:"مقارنة بالفترة السابقة",is_new:"جديد",
+ insights_title:"ماذا تقول الأرقام",ins_none:"لا توجد بيانات كافية بعد لتقديم نصائح. عد بعد بضعة أيام من الزيارات.",
+ ins_lang:"يقرأ معظم الزوار الموقع باللغة {x} ({p}).",ins_device:"{x} هو الجهاز الرئيسي ({p} من الزيارات).",ins_hour:"أكثر وقت نشاطاً في اليوم: حوالي {h}.",ins_room:"أفضل غرفة تحويلاً: {r}. تحوّلت {p} من نقرات «احجز» عليها إلى طلبات.",
+ ins_reach:"وصل {p} من الزوار إلى قسم الغرف.",ins_drop:"الزيارات أقل بنسبة {p} من الفترة السابقة.",ins_up:"الزيارات أعلى بنسبة {p} من الفترة السابقة.",ins_noreq:"لم يُرسل أي طلب حجز في هذه الفترة.",
+ chart_title:"الزيارات والطلبات",lg_visits:"الزيارات",lg_requests:"الطلبات",tip_visits:"زيارات",tip_requests:"طلبات",
+ funnel_title:"من الزيارة إلى الطلب",f_visitors:"الزوار",f_rooms:"وصلوا إلى الغرف",f_taps:"نقروا «احجز»",f_sent:"أرسلوا طلباً",of_visitors:"من الزوار",
+ lang_title:"اللغات",dev_title:"الأجهزة",src_title:"من أين يأتي الزوار",reach_title:"الأقسام التي وصل إليها الزوار",rooms_title:"أداء الغرف",
+ col_room:"الغرفة",col_taps:"النقرات",col_req:"الطلبات",col_conv:"التحويل",hours_title:"أكثر ساعات اليوم نشاطاً",days_title:"أكثر أيام الأسبوع نشاطاً",
+ latest_title:"آخر الطلبات المرسلة",col_when:"التاريخ",col_nights:"الليالي",col_guests:"الأشخاص",col_lang:"اللغة",col_device:"الجهاز",no_data:"لا توجد بيانات بعد.",no_requests:"لا توجد طلبات في هذه الفترة.",
+ nodata_msg:"لا توجد بيانات لهذه الفترة بعد. إذا كان الموقع متصلاً منذ فترة ولا ترى شيئاً، تأكد أنك سجّلت الدخول بالبريد الإلكتروني الخاص بالمدير.",
+ direct:"مباشر / غير معروف",phone:"هاتف",tablet:"جهاز لوحي",computer:"حاسوب",l_en:"الإنجليزية",l_fr:"الفرنسية",l_ar:"العربية",
+ s_about:"الفندق",s_rooms:"الغرف",s_amenities:"الخدمات",s_dining:"المطعم",s_gallery:"معرض الصور",s_location:"الموقع",s_contact:"اتصل بنا"}
+};
+const LOCALE = {en:"en-GB", fr:"fr-FR", ar:"ar-u-nu-latn"};
+let LANG = "en";
+try { LANG = localStorage.getItem("mz_admin_lang") || ((navigator.language || "en").slice(0,2)); } catch(e){}
+if (!I18N[LANG]) LANG = "en";
+const t = (k, v) => { let s = (I18N[LANG][k] != null ? I18N[LANG][k] : I18N.en[k]) || k; if (v) Object.keys(v).forEach(x => s = s.split("{" + x + "}").join(v[x])); return s; };
+const nf = n => new Intl.NumberFormat(LOCALE[LANG]).format(n);
+
+/* ======================= basics ======================= */
 const SB = window.MIRAMAR_SB || {};
 const $ = id => document.getElementById(id);
 const LS = "mz_admin_session";
 let sess = null;
 try { sess = JSON.parse(localStorage.getItem(LS) || "null"); } catch(e){}
 let SET = {};
-
-const SECTIONS = [["sec_about","About / Welcome"],["sec_rooms","Rooms (and “How booking works”)"],["sec_amenities","Services"],["sec_dining","Café-restaurant"],["sec_gallery","Gallery"],["sec_location","Location"],["sec_plan","Plan your stay (house rules)"],["sec_contact","Contact"]];
-const ROOMS = [["r1","Double Room · Sea View"],["r2","Twin Room · Sea View"],["r3","Twin Room · City View"],["r4","Standard Triple · Sea View"],["r5","Superior Triple · City View"]];
-const ROOM_NAME = Object.fromEntries(ROOMS);
-
-function toast(t, kind){ const el = $("toast"); el.textContent = t; el.classList.toggle("err", kind === "err"); el.classList.add("show"); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove("show"), kind === "err" ? 4500 : 2000); }
+const SECTIONS = ["sec_about","sec_rooms","sec_amenities","sec_dining","sec_gallery","sec_location","sec_plan","sec_contact"];
+const ROOM_KEYS = ["r1","r2","r3","r4","r5"];
+const roomName = k => ROOM_KEYS.includes(k) ? t("room_" + k) : (k || "");
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function toast(msg, kind){ const el = $("toast"); el.textContent = msg; el.classList.toggle("err", kind === "err"); el.classList.add("show"); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove("show"), kind === "err" ? 4500 : 2000); }
 function saveSess(s){ sess = s; try { s ? localStorage.setItem(LS, JSON.stringify(s)) : localStorage.removeItem(LS); } catch(e){} }
 
 /* ---- tiny Supabase client (REST only, no libraries) ---- */
@@ -184,29 +298,29 @@ async function api(path, opt = {}, retry = true){
 async function login(email, password){
   const r = await fetch(SB.url + "/auth/v1/token?grant_type=password", {method:"POST", headers:{apikey:SB.key, "Content-Type":"application/json"}, body:JSON.stringify({email, password})});
   const j = await r.json().catch(() => ({}));
-  if (!r.ok) throw new Error(j.error_description || j.msg || "Wrong e-mail or password.");
+  if (!r.ok) throw new Error(/invalid/i.test(j.error_description || j.msg || "") ? t("err_login") : (j.error_description || j.msg || t("err_login")));
   saveSess({access:j.access_token, refresh:j.refresh_token, email:(j.user && j.user.email) || email});
 }
 
-/* ---- settings ---- */
+/* ======================= controls ======================= */
 async function loadSettings(){
   const r = await api("/rest/v1/site_settings?select=key,value");
-  if (!r.ok) throw new Error("Could not read the settings (" + r.status + ").");
+  if (!r.ok) throw new Error(t("err_read", {n:r.status}));
   const rows = await r.json(); SET = {}; rows.forEach(x => SET[x.key] = x.value);
 }
 async function setSetting(key, value){
   const r = await api("/rest/v1/site_settings?on_conflict=key", {method:"POST", headers:{"Content-Type":"application/json", Prefer:"resolution=merge-duplicates,return=minimal"}, body:JSON.stringify([{key, value, updated_at:new Date().toISOString()}])});
-  if (!r.ok) throw new Error("Not saved (" + r.status + "). Are you signed in with the admin e-mail?");
+  if (!r.ok) throw new Error(t("err_save", {n:r.status}));
   SET[key] = value;
 }
 function switchRow(key, title, hint, onByDefault = true){
   const on = onByDefault ? SET[key] !== false : SET[key] === true;
   const row = document.createElement("div"); row.className = "row";
-  row.innerHTML = `<div>${title}${hint ? "<small>" + hint + "</small>" : ""}</div><label class="sw"><input type="checkbox" ${on ? "checked" : ""} aria-label="${title}"><i></i></label>`;
+  row.innerHTML = `<div>${esc(title)}${hint ? "<small>" + esc(hint) + "</small>" : ""}</div><label class="sw"><input type="checkbox" ${on ? "checked" : ""} aria-label="${esc(title)}"><i></i></label>`;
   const cb = row.querySelector("input");
   cb.addEventListener("change", async () => {
     cb.disabled = true;
-    try { await setSetting(key, cb.checked); toast("Saved"); }
+    try { await setSetting(key, cb.checked); toast(t("saved")); }
     catch(e){ cb.checked = !cb.checked; toast(e.message, "err"); }
     cb.disabled = false;
   });
@@ -214,95 +328,194 @@ function switchRow(key, title, hint, onByDefault = true){
 }
 function renderControls(){
   const put = (id, rows) => { const g = $(id); g.innerHTML = ""; rows.forEach(r => g.appendChild(r)); };
-  put("grp-res", [switchRow("reservations_on", "Accept online reservation requests", "When off, “Book now” shows a “please call us” message instead of the form.")]);
-  put("grp-sec", SECTIONS.map(([k,t]) => switchRow(k, t)));
-  put("grp-room", ROOMS.map(([k,t]) => switchRow("room_" + k, t)));
-  put("grp-banner", [switchRow("banner_on", "Show the banner", "", false)]);
+  put("grp-res", [switchRow("reservations_on", t("res_on"), t("res_on_hint"))]);
+  put("grp-sec", SECTIONS.map(k => switchRow(k, t(k))));
+  put("grp-room", ROOM_KEYS.map(k => switchRow("room_" + k, t("room_" + k))));
+  put("grp-banner", [switchRow("banner_on", t("banner_show"), "", false)]);
   $("b_en").value = SET.banner_en || ""; $("b_fr").value = SET.banner_fr || ""; $("b_ar").value = SET.banner_ar || "";
 }
 $("saveBanner").addEventListener("click", async () => {
-  try { await setSetting("banner_en", $("b_en").value.trim()); await setSetting("banner_fr", $("b_fr").value.trim()); await setSetting("banner_ar", $("b_ar").value.trim()); toast("Banner text saved"); }
+  try { await setSetting("banner_en", $("b_en").value.trim()); await setSetting("banner_fr", $("b_fr").value.trim()); await setSetting("banner_ar", $("b_ar").value.trim()); toast(t("banner_saved")); }
   catch(e){ toast(e.message, "err"); }
 });
 
-/* ---- statistics ---- */
+/* ======================= statistics ======================= */
+let DAYS = 7, DATA = null;      // DATA = {cur:[events], prev:[events], start:Date}
 async function fetchEvents(sinceISO){
   const out = []; const step = 1000;
-  for (let from = 0; from < 30000; from += step) {
+  for (let from = 0; from < 50000; from += step) {
     const r = await api("/rest/v1/events?select=created_at,event,session,lang,device,ref,room,section,nights,guests&created_at=gte." + encodeURIComponent(sinceISO) + "&order=created_at.asc",
       {headers:{"Range-Unit":"items", Range: from + "-" + (from + step - 1)}});
-    if (!r.ok && r.status !== 206) throw new Error("Could not read the statistics (" + r.status + ").");
+    if (!r.ok && r.status !== 206) throw new Error(t("err_read", {n:r.status}));
     const rows = await r.json(); out.push(...rows);
     if (rows.length < step) break;
   }
   return out;
 }
-const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const pct = (a, b) => b ? Math.round(a * 100 / b) + "%" : "–";
-function bars(title, entries, total, fmt){
-  entries = entries.filter(e => e[1] > 0).sort((a,b) => b[1] - a[1]).slice(0, 8);
-  const max = Math.max(1, ...entries.map(e => e[1]));
-  return `<div class="card"><h2>${title}</h2>` + (entries.length ? entries.map(([k,v]) => `<div class="bar"><span>${esc(fmt ? fmt(k) : k)}</span><span class="t"><i style="width:${Math.round(v*100/max)}%"></i></span><em>${v}${total ? " · " + pct(v,total) : ""}</em></div>`).join("") : `<p class="empty">No data yet.</p>`) + `</div>`;
+const count = (rows, f) => { const m = {}; rows.forEach(r => { const k = f(r); if (k != null && k !== "") m[k] = (m[k] || 0) + 1; }); return Object.entries(m).sort((a,b) => b[1] - a[1]); };
+const uniq = (rows, ev) => new Set(rows.filter(e => e.event === ev).map(e => e.session).filter(Boolean));
+function metrics(ev){
+  const visits = ev.filter(e => e.event === "visit"), reqs = ev.filter(e => e.event === "request_sent"), clicks = ev.filter(e => e.event === "book_click");
+  const sessions = new Set(ev.map(e => e.session).filter(Boolean));
+  const reqSes = uniq(ev, "request_sent"), tapSes = uniq(ev, "book_click");
+  const roomSes = new Set(ev.filter(e => e.event === "section_view" && e.section === "rooms").map(e => e.session));
+  return {visits, reqs, clicks, nVisits:visits.length, nSes:sessions.size, nTaps:clicks.length, nReq:reqs.length, conv: sessions.size ? reqSes.size / sessions.size : 0, reqSes:reqSes.size, tapSes:tapSes.size, roomSes:roomSes.size};
 }
-const count = (rows, f) => { const m = {}; rows.forEach(r => { const k = f(r); if (k != null && k !== "") m[k] = (m[k] || 0) + 1; }); return Object.entries(m); };
-const LANG = {en:"English", fr:"French", ar:"Arabic"}, DEV = {phone:"Phone", tablet:"Tablet", desktop:"Computer"};
-const SEC = {about:"The hotel", rooms:"Rooms", amenities:"Services", dining:"Restaurant", gallery:"Gallery", location:"Location", contact:"Contact"};
+function delta(cur, prev){
+  if (!prev && !cur) return `<span class="chip">–</span>`;
+  if (!prev) return `<span class="chip up">${t("is_new")}</span>`;
+  const d = Math.round((cur - prev) * 100 / prev);
+  return `<span class="chip ${d > 0 ? "up" : d < 0 ? "down" : ""}">${d > 0 ? "▲" : d < 0 ? "▼" : "•"} ${Math.abs(d)}%</span>`;
+}
+function spark(vals, color){
+  const w = 100, h = 30, mx = Math.max(1, ...vals), n = vals.length;
+  if (n < 2) return `<svg class="spark" viewBox="0 0 ${w} ${h}"></svg>`;
+  const pts = vals.map((v,i) => [i * w / (n - 1), h - 3 - v * (h - 6) / mx]);
+  const d = pts.map((p,i) => (i ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" ");
+  return `<svg class="spark" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none"><path d="${d} L${w} ${h} L0 ${h} Z" fill="${color}" opacity=".12"/><path d="${d}" fill="none" stroke="${color}" stroke-width="1.6" vector-effect="non-scaling-stroke"/></svg>`;
+}
+/* buckets for charts: hourly for "today", daily otherwise */
+function buckets(start, days){
+  const list = [];
+  if (days === 1) for (let h = 0; h < 24; h++) { const d = new Date(start); d.setHours(h); list.push({from:d.getTime(), to:d.getTime() + 3600e3, label:String(h).padStart(2,"0") + ":00"}); }
+  else for (let i = 0; i < days; i++) { const d = new Date(start); d.setDate(start.getDate() + i); const e = new Date(d); e.setDate(d.getDate() + 1); list.push({from:d.getTime(), to:e.getTime(), label:d.toLocaleDateString(LOCALE[LANG], {day:"numeric", month:"short"})}); }
+  return list;
+}
+const fill = (bk, rows) => bk.map(b => rows.filter(r => { const x = new Date(r.created_at).getTime(); return x >= b.from && x < b.to; }).length);
+function niceStep(mx0){ if (mx0 <= 5) return 1; const p = Math.pow(10, Math.floor(Math.log10(mx0 / 4))); for (const m of [1,2,5,10]) if (mx0 / (m * p) <= 5) return m * p; return 10 * p; }
+function areaChart(bk, v, r){
+  const W = 640, H = 230, L = 40, R = 12, T = 12, B = 26, iw = W - L - R, ih = H - T - B, n = bk.length;
+  const mx0 = Math.max(1, ...v, ...r), step = niceStep(mx0), mx = Math.ceil(mx0 / step) * step || 1;
+  const X = i => L + (n > 1 ? i * iw / (n - 1) : iw / 2), Y = val => T + ih - val * ih / mx;
+  let g = ""; for (let k = 0; k <= mx; k += step) g += `<line x1="${L}" x2="${W - R}" y1="${Y(k)}" y2="${Y(k)}" stroke="#e3eaef"/><text x="${L - 6}" y="${Y(k) + 4}" text-anchor="end" font-size="11" fill="#7b8791">${k}</text>`;
+  const line = a => a.map((val,i) => (i ? "L" : "M") + X(i).toFixed(1) + " " + Y(val).toFixed(1)).join(" ");
+  const area = `${line(v)} L${X(n - 1)} ${T + ih} L${X(0)} ${T + ih} Z`;
+  const ticks = [0, Math.floor((n - 1) / 2), n - 1].filter((x,i,a) => a.indexOf(x) === i).map(i => `<text x="${X(i)}" y="${H - 6}" text-anchor="${i === 0 ? "start" : i === n - 1 ? "end" : "middle"}" font-size="11" fill="#7b8791">${esc(bk[i].label)}</text>`).join("");
+  const dots = r.map((val,i) => val ? `<circle cx="${X(i)}" cy="${Y(val)}" r="3.4" fill="#e0a458" stroke="#fff" stroke-width="1.5"/>` : "").join("");
+  return `<div class="chartbox" id="cbox"><svg viewBox="0 0 ${W} ${H}" role="img">${g}<path d="${area}" fill="#0e7490" opacity=".12"/><path d="${line(v)}" fill="none" stroke="#0e7490" stroke-width="2.2" stroke-linejoin="round"/><path d="${line(r)}" fill="none" stroke="#e0a458" stroke-width="2" stroke-linejoin="round" opacity=".9"/>${dots}${ticks}<line id="cline" x1="0" x2="0" y1="${T}" y2="${T + ih}" stroke="#0b1b27" stroke-opacity=".25" style="display:none"/></svg><div class="tip" id="ctip"></div></div>`;
+}
+function wireChart(bk, v, r){
+  const box = $("cbox"); if (!box) return; const svg = box.querySelector("svg"), tip = $("ctip"), line = $("cline"); const W = 640, L = 40, R = 12, n = bk.length;
+  const show = e => {
+    const rect = svg.getBoundingClientRect(); const x = (e.clientX - rect.left) * W / rect.width;
+    const i = Math.max(0, Math.min(n - 1, Math.round((x - L) / ((W - L - R) / Math.max(1, n - 1)))));
+    const ux = L + (n > 1 ? i * (W - L - R) / (n - 1) : (W - L - R) / 2);
+    line.setAttribute("x1", ux); line.setAttribute("x2", ux); line.style.display = "";
+    tip.innerHTML = `<b>${esc(bk[i].label)}</b><br>${nf(v[i])} ${t("tip_visits")} · ${nf(r[i])} ${t("tip_requests")}`;
+    const px = ux * rect.width / W; tip.style.left = Math.max(70, Math.min(rect.width - 70, px)) + "px"; tip.style.top = "10px"; tip.classList.add("show");
+  };
+  box.addEventListener("pointermove", show); box.addEventListener("pointerdown", show);
+  box.addEventListener("pointerleave", () => { tip.classList.remove("show"); line.style.display = "none"; });
+}
+const PAL = ["#0e7490","#e0a458","#173a52","#7fb8c9","#b5894a","#9aa8b2"];
+function donut(entries, total, fmt){
+  const r = 46, C = 2 * Math.PI * r; let off = 0, segs = "";
+  entries.forEach(([k,v], i) => { const len = total ? v / total * C : 0; segs += `<circle cx="60" cy="60" r="${r}" fill="none" stroke="${PAL[i % PAL.length]}" stroke-width="16" stroke-dasharray="${len.toFixed(2)} ${(C - len).toFixed(2)}" stroke-dashoffset="${(-off).toFixed(2)}" transform="rotate(-90 60 60)"/>`; off += len; });
+  const leg = entries.map(([k,v], i) => `<div><span><i style="background:${PAL[i % PAL.length]}"></i>${esc(fmt(k))}</span><em>${nf(v)} · ${pct(v,total)}</em></div>`).join("");
+  return `<div class="donutwrap"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="${r}" fill="none" stroke="#eef3f6" stroke-width="16"/>${segs}<text x="60" y="65" text-anchor="middle" font-size="17" font-weight="700" fill="#0b1b27">${nf(total)}</text></svg><div class="dl">${leg}</div></div>`;
+}
+function card(title, inner){ return `<div class="card"><h2>${title}</h2>${inner}</div>`; }
+function barList(entries, total, fmt){
+  entries = entries.filter(e => e[1] > 0).slice(0, 8); const mx = Math.max(1, ...entries.map(e => e[1]));
+  return entries.length ? entries.map(([k,v]) => `<div class="bar"><span>${esc(fmt(k))}</span><span class="t"><i style="width:${Math.round(v * 100 / mx)}%"></i></span><em>${nf(v)}${total ? " · " + pct(v,total) : ""}</em></div>`).join("") : `<p class="empty">${t("no_data")}</p>`;
+}
+const langName = k => I18N.en["l_" + k] ? t("l_" + k) : k;
+const devName = k => t(k === "desktop" ? "computer" : k);
+function insightsList(c, p){
+  const out = []; const vis = c.visits;
+  if (!vis.length) return [t("ins_none")];
+  const Lg = count(vis, v => v.lang)[0]; if (Lg) out.push(t("ins_lang", {x:LANG === "fr" ? langName(Lg[0]).toLowerCase() : langName(Lg[0]), p:pct(Lg[1], vis.length)}));
+  const D = count(vis, v => v.device)[0]; if (D) out.push(t("ins_device", {x:devName(D[0]), p:pct(D[1], vis.length)}));
+  const hrs = new Array(24).fill(0); vis.forEach(v => hrs[new Date(v.created_at).getHours()]++); const hm = Math.max(...hrs);
+  if (hm >= 3) out.push(t("ins_hour", {h:String(hrs.indexOf(hm)).padStart(2,"0") + ":00"}));
+  if (c.nSes) out.push(t("ins_reach", {p:pct(c.roomSes, c.nSes)}));
+  const rooms = ROOM_KEYS.map(k => [k, c.clicks.filter(x => x.room === k).length, c.reqs.filter(x => x.room === k).length]).filter(x => x[1] >= 3).sort((a,b) => b[2]/b[1] - a[2]/a[1]);
+  if (rooms.length && rooms[0][2]) out.push(t("ins_room", {r:roomName(rooms[0][0]), p:pct(rooms[0][2], rooms[0][1])}));
+  if (!c.nReq) out.push(t("ins_noreq"));
+  if (p.nVisits >= 5) { const d = Math.round((c.nVisits - p.nVisits) * 100 / p.nVisits); if (d <= -15) out.push(t("ins_drop", {p:Math.abs(d) + "%"})); else if (d >= 15) out.push(t("ins_up", {p:d + "%"})); }
+  return out;
+}
+function renderStatsFromData(){
+  const body = $("statsBody"); if (!DATA) return;
+  const {cur, prev, start} = DATA; const c = metrics(cur), p = metrics(prev);
+  const bk = buckets(start, DAYS), vSeries = fill(bk, c.visits), rSeries = fill(bk, c.reqs);
+  const sesSeries = bk.map(b => new Set(cur.filter(e => { const x = new Date(e.created_at).getTime(); return x >= b.from && x < b.to && e.session; }).map(e => e.session)).size);
+  const tapSeries = fill(bk, c.clicks);
+  const kpi = (label, val, cv, pv, series, color, isPct) => `<div class="kpi"><span class="l">${label}</span><b>${isPct ? Math.round(val * 100) + "%" : nf(val)}</b>${delta(cv, pv)}<small>${t("vs_prev")}</small>${spark(series, color)}</div>`;
+  let html = `<div class="kpis">` +
+    kpi(t("kpi_visits"), c.nVisits, c.nVisits, p.nVisits, vSeries, "#0e7490") +
+    kpi(t("kpi_visitors"), c.nSes, c.nSes, p.nSes, sesSeries, "#173a52") +
+    kpi(t("kpi_taps"), c.nTaps, c.nTaps, p.nTaps, tapSeries, "#b5894a") +
+    kpi(t("kpi_requests"), c.nReq, c.nReq, p.nReq, rSeries, "#e0a458") +
+    kpi(t("kpi_conv"), c.conv, c.conv, p.conv, rSeries, "#1f9d55", true) + `</div>`;
+  if (!cur.length) html += `<div class="msg info" style="margin-bottom:16px">${t("nodata_msg")}</div>`;
+  html += `<div class="card insights"><h2>${t("insights_title")}</h2><ul>${insightsList(c, p).map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>`;
+  html += card(t("chart_title"), `<div class="legend"><span><i style="background:#0e7490"></i>${t("lg_visits")}</span><span><i style="background:#e0a458"></i>${t("lg_requests")}</span></div>` + areaChart(bk, vSeries, rSeries));
+  const stp = [[t("f_visitors"), c.nSes], [t("f_rooms"), c.roomSes], [t("f_taps"), c.tapSes], [t("f_sent"), c.reqSes]];
+  const funnel = stp.map(([l,v], i) => `<div class="st"><div class="top"><span>${esc(l)}</span><span><b>${nf(v)}</b> <em>${pct(v, stp[0][1])}${i ? " · " + t("of_visitors") : ""}</em></span></div><div class="t"><i style="width:${stp[0][1] ? Math.max(2, Math.round(v * 100 / stp[0][1])) : 0}%"></i></div></div>`).join("");
+  html += `<div class="grid2">` + card(t("funnel_title"), `<div class="funnel">${funnel}</div>`) + card(t("src_title"), barList(count(c.visits, v => v.ref || "direct"), c.nVisits, k => k === "direct" ? t("direct") : k)) + `</div>`;
+  const lg = count(c.visits, v => v.lang), dv = count(c.visits, v => v.device);
+  html += `<div class="grid2">` + card(t("lang_title"), lg.length ? donut(lg, c.nVisits, langName) : `<p class="empty">${t("no_data")}</p>`) + card(t("dev_title"), dv.length ? donut(dv, c.nVisits, devName) : `<p class="empty">${t("no_data")}</p>`) + `</div>`;
+  const rr = ROOM_KEYS.map(k => ({k, taps:c.clicks.filter(x => x.room === k).length, req:c.reqs.filter(x => x.room === k).length}));
+  const rtable = `<div style="overflow-x:auto"><table><tr><th>${t("col_room")}</th><th>${t("col_taps")}</th><th>${t("col_req")}</th><th>${t("col_conv")}</th></tr>${rr.map(x => `<tr><td>${esc(roomName(x.k))}</td><td>${nf(x.taps)}</td><td>${nf(x.req)}</td><td>${x.taps ? Math.round(x.req * 100 / x.taps) + "%" : "–"}</td></tr>`).join("")}</table></div>`;
+  const secs = ["about","rooms","amenities","dining","gallery","location","contact"].map(s => [s, new Set(cur.filter(e => e.event === "section_view" && e.section === s).map(e => e.session)).size]);
+  html += `<div class="grid2">` + card(t("rooms_title"), rtable) + card(t("reach_title"), barList(secs, c.nSes, k => t("s_" + k))) + `</div>`;
+  const hrs = new Array(24).fill(0), wd = new Array(7).fill(0); c.visits.forEach(v => { const d = new Date(v.created_at); hrs[d.getHours()]++; wd[(d.getDay() + 6) % 7]++; });
+  const colsHtml = (arr, lab) => { const mx = Math.max(1, ...arr); return `<div class="cols">${arr.map((v,i) => `<div class="${v === mx && v ? "pk" : ""}" style="height:${Math.max(2, Math.round(v * 100 / mx))}%" data-t="${esc(lab(i))}: ${nf(v)}"></div>`).join("")}</div>`; };
+  const wdn = i => new Date(2024, 0, 1 + i).toLocaleDateString(LOCALE[LANG], {weekday:"short"});
+  html += `<div class="grid2">` + card(t("hours_title"), colsHtml(hrs, i => String(i).padStart(2,"0") + ":00") + `<div class="axis"><span>00</span><span>06</span><span>12</span><span>18</span><span>23</span></div>`) + card(t("days_title"), colsHtml(wd, wdn) + `<div class="axis"><span>${wdn(0)}</span><span>${wdn(3)}</span><span>${wdn(6)}</span></div>`) + `</div>`;
+  const last = c.reqs.slice(-12).reverse();
+  html += card(t("latest_title"), last.length ? `<div style="overflow-x:auto"><table><tr><th>${t("col_when")}</th><th>${t("col_room")}</th><th>${t("col_nights")}</th><th>${t("col_guests")}</th><th>${t("col_lang")}</th><th>${t("col_device")}</th></tr>${last.map(r => `<tr><td>${esc(new Date(r.created_at).toLocaleString(LOCALE[LANG], {dateStyle:"short", timeStyle:"short"}))}</td><td>${esc(roomName(r.room))}</td><td>${esc(r.nights ?? "")}</td><td>${esc(r.guests ?? "")}</td><td>${esc((r.lang || "").toUpperCase())}</td><td>${esc(r.device ? devName(r.device) : "")}</td></tr>`).join("")}</table></div>` : `<p class="empty">${t("no_requests")}</p>`);
+  body.innerHTML = html; wireChart(bk, vSeries, rSeries);
+}
 async function renderStats(){
-  const body = $("statsBody"); body.innerHTML = `<p class="empty">Loading…</p>`;
-  const days = +$("period").value;
-  const start = new Date(); start.setHours(0,0,0,0); start.setDate(start.getDate() - (days - 1));
-  let ev;
-  try { ev = await fetchEvents(start.toISOString()); } catch(e){ body.innerHTML = `<div class="msg err">${esc(e.message)}</div>`; return; }
-  const visits = ev.filter(e => e.event === "visit"), clicks = ev.filter(e => e.event === "book_click"), reqs = ev.filter(e => e.event === "request_sent");
-  const sessions = new Set(ev.map(e => e.session).filter(Boolean)); const nSes = sessions.size;
-  const reqSes = new Set(reqs.map(e => e.session)).size;
-  let html = `<div class="kpis">
-    <div class="kpi"><b>${visits.length}</b><span>Page visits</span></div>
-    <div class="kpi"><b>${nSes}</b><span>Visitors (sessions)</span></div>
-    <div class="kpi"><b>${clicks.length}</b><span>“Book” taps</span></div>
-    <div class="kpi"><b>${reqs.length}</b><span>Requests sent</span></div>
-    <div class="kpi"><b>${pct(reqSes, nSes)}</b><span>Visitors who sent a request</span></div></div>`;
-  if (!ev.length) html += `<div class="msg info">No data for this period yet. If the website has been connected for a while and you still see nothing, check that you signed in with the admin e-mail.</div>`;
-  // daily bars
-  const dayKey = d => d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
-  const per = {}; visits.forEach(v => { const k = dayKey(new Date(v.created_at)); per[k] = (per[k] || 0) + 1; });
-  const list = []; for (let i = 0; i < days; i++) { const d = new Date(start); d.setDate(start.getDate() + i); list.push([dayKey(d), per[dayKey(d)] || 0]); }
-  const mx = Math.max(1, ...list.map(x => x[1]));
-  html += `<div class="card"><h2>Visits per day</h2><div class="days">${list.map(([k,v]) => `<div style="height:${Math.max(2, Math.round(v*100/mx))}%" data-t="${k}: ${v}"></div>`).join("")}</div><div class="axis"><span>${list[0][0]}</span><span>${list[list.length-1][0]}</span></div></div>`;
-  // breakdowns
-  const vis = visits.length;
-  html += `<div class="grid2">` +
-    bars("Languages", count(visits, v => v.lang), vis, k => LANG[k] || k) +
-    bars("Devices", count(visits, v => v.device), vis, k => DEV[k] || k) +
-    bars("Where visitors come from", count(visits, v => v.ref || "direct"), vis, k => k === "direct" ? "Direct / unknown" : k) +
-    bars("Sections reached (visitors)", count(ev.filter(e => e.event === "section_view"), e => e.section), nSes, k => SEC[k] || k) +
-    bars("Rooms people tapped “Book” on", count(clicks, c => c.room), clicks.length, k => ROOM_NAME[k] || k) +
-    bars("Rooms in sent requests", count(reqs, r => r.room), reqs.length, k => ROOM_NAME[k] || k) + `</div>`;
-  // latest requests
-  const last = reqs.slice(-15).reverse();
-  html += `<div class="card"><h2>Latest requests sent</h2>` + (last.length ? `<div style="overflow-x:auto"><table><tr><th>When</th><th>Room</th><th>Nights</th><th>Guests</th><th>Lang</th><th>Device</th></tr>${last.map(r => `<tr><td>${esc(new Date(r.created_at).toLocaleString([], {dateStyle:"short", timeStyle:"short"}))}</td><td>${esc(ROOM_NAME[r.room] || r.room || "")}</td><td>${esc(r.nights ?? "")}</td><td>${esc(r.guests ?? "")}</td><td>${esc((r.lang || "").toUpperCase())}</td><td>${esc(DEV[r.device] || r.device || "")}</td></tr>`).join("")}</table></div>` : `<p class="empty">No requests in this period.</p>`) + `<p class="sub" style="margin:10px 0 0">The guest's name, phone and e-mail arrive in your e-mail inbox, not here.</p></div>`;
-  body.innerHTML = html;
+  const body = $("statsBody"); body.innerHTML = `<div class="skel"></div><div class="skel" style="margin-top:14px;height:200px"></div>`;
+  const start = new Date(); start.setHours(0,0,0,0); start.setDate(start.getDate() - (DAYS - 1));
+  const prevStart = new Date(start); prevStart.setDate(prevStart.getDate() - DAYS);
+  try {
+    const all = await fetchEvents(prevStart.toISOString()); all.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+    DATA = {cur:all.filter(e => new Date(e.created_at) >= start), prev:all.filter(e => new Date(e.created_at) < start), start};
+  } catch(e){ body.innerHTML = `<div class="msg err">${esc(e.message)}</div>`; DATA = null; return; }
+  renderStatsFromData();
 }
+$("period").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; DAYS = +b.dataset.d; document.querySelectorAll("#period button").forEach(x => x.classList.toggle("on", x === b)); renderStats(); });
+$("refreshBtn").addEventListener("click", renderStats);
+$("csvBtn").addEventListener("click", () => {
+  if (!DATA || !DATA.cur.length) { toast(t("no_data"), "err"); return; }
+  const cols = ["created_at","event","session","lang","device","ref","room","section","nights","guests"];
+  const q = v => { v = v == null ? "" : String(v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
+  const csv = [cols.join(",")].concat(DATA.cur.map(r => cols.map(c => q(r[c])).join(","))).join("\n");
+  const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob(["﻿" + csv], {type:"text/csv;charset=utf-8"})); a.download = "miramar-statistics-" + new Date().toISOString().slice(0,10) + ".csv"; document.body.appendChild(a); a.click(); a.remove();
+});
 
-/* ---- screens ---- */
+/* ======================= screens + language ======================= */
+function applyLang(){
+  document.documentElement.lang = LANG; document.documentElement.dir = LANG === "ar" ? "rtl" : "ltr";
+  document.querySelectorAll("[data-i18n]").forEach(el => { el.textContent = t(el.dataset.i18n); });
+  document.querySelectorAll("#langsw button").forEach(b => b.classList.toggle("on", b.dataset.l === LANG));
+  document.title = t("admin") + " — Hôtel Miramar";
+  if (!$("app").classList.contains("hide")) { renderControls(); if (DATA) renderStatsFromData(); }
+}
+document.querySelectorAll("#langsw button").forEach(b => b.addEventListener("click", () => { LANG = b.dataset.l; try { localStorage.setItem("mz_admin_lang", LANG); } catch(e){} applyLang(); }));
 function show(id){ ["nocfg","login","app"].forEach(x => $(x).classList.toggle("hide", x !== id)); $("hbtns").classList.toggle("hide", id !== "app"); }
 async function enter(){
-  try { await loadSettings(); } catch(e){ if (sess) { saveSess(null); } show("login"); $("loginErr").textContent = e.message; $("loginErr").classList.remove("hide"); return; }
-  renderControls(); show("app");
+  try { await loadSettings(); } catch(e){ if (sess) saveSess(null); show("login"); $("loginErr").textContent = e.message; $("loginErr").classList.remove("hide"); return; }
+  show("app"); applyLang();
 }
-document.querySelectorAll(".tab").forEach(t => t.addEventListener("click", () => {
-  document.querySelectorAll(".tab").forEach(x => x.classList.toggle("on", x === t));
-  $("tab-controls").classList.toggle("hide", t.dataset.tab !== "controls"); $("tab-stats").classList.toggle("hide", t.dataset.tab !== "stats");
-  if (t.dataset.tab === "stats") renderStats();
+document.querySelectorAll(".tab").forEach(tb => tb.addEventListener("click", () => {
+  document.querySelectorAll(".tab").forEach(x => x.classList.toggle("on", x === tb));
+  $("tab-controls").classList.toggle("hide", tb.dataset.tab !== "controls"); $("tab-stats").classList.toggle("hide", tb.dataset.tab !== "stats");
+  if (tb.dataset.tab === "stats") renderStats();
 }));
-$("period").addEventListener("change", renderStats);
-$("logout").addEventListener("click", () => { saveSess(null); show("login"); });
+$("logout").addEventListener("click", () => { saveSess(null); DATA = null; show("login"); });
 $("loginForm").addEventListener("submit", async e => {
   e.preventDefault(); $("loginErr").classList.add("hide"); $("loginBtn").disabled = true;
   try { await login($("em").value.trim(), $("pw").value); $("pw").value = ""; await enter(); }
   catch(ex){ $("loginErr").textContent = ex.message; $("loginErr").classList.remove("hide"); }
   $("loginBtn").disabled = false;
 });
+applyLang();
 (async () => {
   if (!SB.url || !SB.key) { show("nocfg"); return; }
   if (sess) { await enter(); } else { show("login"); }
