@@ -172,7 +172,8 @@ async function refresh(){
   } catch(e){ return false; }
 }
 async function api(path, opt = {}, retry = true){
-  const headers = Object.assign({apikey:SB.key, Authorization:"Bearer " + (sess ? sess.access : SB.key)}, opt.headers || {});
+  const bearer = sess ? sess.access : (SB.key.indexOf("eyJ") === 0 ? SB.key : null);   // new "publishable" keys are not sent as a Bearer token
+  const headers = Object.assign({apikey:SB.key}, bearer ? {Authorization:"Bearer " + bearer} : {}, opt.headers || {});
   const r = await fetch(SB.url + path, Object.assign({}, opt, {headers}));
   if (r.status === 401 && retry && sess && await refresh()) return api(path, opt, false);
   return r;
