@@ -56,3 +56,13 @@ English, French and Arabic (Arabic switches the page to right-to-left). All text
 - Make focused changes; don't rewrite the whole site or break features that work; keep the design consistent.
 - Test changes in the browser (desktop and phone width, and in Arabic) before saying they work.
 - Ask before committing or pushing to GitHub; stage files explicitly (no blind `git add .`).
+
+## Admin page + statistics (added Nov 2026)
+- Files: `admin.html` (owner-only page, English UI, no link from the public site, `noindex`), `config.js` (Supabase URL + anon key, EMPTY until connected), `supabase/setup.sql` (tables, security rules).
+- Uses a NEW, separate Supabase project for the hotel (not ReviewRise). No libraries: plain `fetch` to the REST/auth endpoints.
+- With `config.js` empty the site behaves exactly as before and the admin page says "Not connected yet".
+- Settings (table `site_settings`, key/value): `sec_about, sec_rooms, sec_amenities, sec_dining, sec_gallery, sec_location, sec_plan, sec_contact` (false = hidden, default on), `room_r1..room_r5` (false = hidden), `reservations_on` (false = "please call us" instead of the form), `banner_on` + `banner_en/fr/ar`.
+- The site reads the settings on every load (last known settings are cached in localStorage so it applies instantly).
+- Statistics (table `events`): anonymous only (visit, section_view, book_click, request_sent + language, device, referrer host, room, nights, guests, random per-tab session id). NO names, e-mails or phone numbers. Skipped when the browser sends Do Not Track.
+- Security: only the e-mail written in `public.is_admin()` (setup.sql) can change settings or read events (Row Level Security). Turn OFF "Allow new users to sign up" in Supabase Auth. The anon key in config.js is public by design.
+- Risk: anyone can insert fake events (spam the statistics); they cannot read or change anything else.

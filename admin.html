@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Admin — Hôtel Miramar</title>
+<style>
+  :root{--ink:#0b1b27;--teal:#0e7490;--teal-d:#0a5a70;--mist:#eef3f6;--line:#dbe4ea;--muted:#66707a;--ok:#1f9d55;--bad:#c0392b;--gold:#e0a458}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--mist);color:var(--ink);line-height:1.5}
+  header{background:var(--ink);color:#fff;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:0;z-index:5}
+  header b{font-size:1.05rem}
+  header small{display:block;opacity:.65;font-size:.72rem;letter-spacing:.08em}
+  .hbtns{display:flex;gap:8px;align-items:center}
+  a.btn,button.btn{display:inline-block;border:0;border-radius:10px;padding:.65em 1.1em;font:600 .9rem inherit;cursor:pointer;background:var(--teal);color:#fff;text-decoration:none}
+  .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.4);color:#fff}
+  .btn.light{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  main{max-width:960px;margin:0 auto;padding:18px}
+  .card{background:#fff;border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(11,27,39,.06)}
+  h2{font-size:1.15rem;margin-bottom:4px}
+  .sub{color:var(--muted);font-size:.88rem;margin-bottom:14px}
+  .tabs{display:flex;gap:8px;margin-bottom:16px}
+  .tab{flex:1;padding:.8em;border-radius:12px;border:1px solid var(--line);background:#fff;font:600 .95rem inherit;cursor:pointer;color:var(--ink)}
+  .tab.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  label.f{display:block;font-size:.78rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:12px 0 4px}
+  input[type=email],input[type=password],textarea,select{width:100%;padding:.75em .9em;border:1px solid var(--line);border-radius:10px;font:inherit;background:#fff;color:var(--ink)}
+  textarea{min-height:64px;resize:vertical}
+  .msg{padding:12px 14px;border-radius:10px;font-size:.9rem;margin-top:12px}
+  .msg.err{background:#fbe9e4;color:#8a2f13}.msg.info{background:#e3f3f7;color:#0a4a5c}
+  .hide{display:none!important}
+  /* switches */
+  .row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 0;border-bottom:1px solid var(--line)}
+  .row:last-child{border-bottom:0}
+  .row small{display:block;color:var(--muted);font-size:.8rem}
+  .sw{position:relative;width:52px;height:30px;flex:none}
+  .sw input{opacity:0;width:100%;height:100%;position:absolute;inset:0;cursor:pointer;z-index:2;margin:0}
+  .sw i{position:absolute;inset:0;border-radius:30px;background:#c5ced5;transition:.2s}
+  .sw i::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+  .sw input:checked+i{background:var(--ok)}
+  .sw input:checked+i::after{transform:translateX(22px)}
+  .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;font-size:.88rem;opacity:0;pointer-events:none;transition:.25s;z-index:20}
+  .toast.show{opacity:1}
+  /* stats */
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:16px}
+  .kpi{background:#fff;border-radius:14px;padding:16px}
+  .kpi b{display:block;font-size:1.8rem;line-height:1.1}
+  .kpi span{font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:700px){.grid2{grid-template-columns:1fr}}
+  .bar{display:grid;grid-template-columns:minmax(80px,38%) 1fr auto;gap:10px;align-items:center;margin:7px 0;font-size:.88rem}
+  .bar .t{height:10px;background:var(--mist);border-radius:6px;overflow:hidden}
+  .bar .t i{display:block;height:100%;background:var(--teal);border-radius:6px}
+  .bar em{font-style:normal;color:var(--muted);font-size:.82rem}
+  .days{display:flex;align-items:flex-end;gap:3px;height:120px;margin-top:6px}
+  .days div{flex:1;background:var(--teal);border-radius:3px 3px 0 0;min-height:2px;position:relative}
+  .days div:hover::after{content:attr(data-t);position:absolute;bottom:100%;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;font-size:.7rem;padding:2px 6px;border-radius:5px;white-space:nowrap;margin-bottom:4px}
+  .axis{display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);margin-top:4px}
+  table{width:100%;border-collapse:collapse;font-size:.85rem}
+  th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}
+  th{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+  .empty{color:var(--muted);font-size:.88rem;padding:6px 0}
+</style>
+</head>
+<body>
+
+<header>
+  <div><b>Hôtel Miramar</b><small>ADMIN</small></div>
+  <div class="hbtns hide" id="hbtns">
+    <a class="btn ghost" href="index.html" target="_blank" rel="noopener">View site</a>
+    <button class="btn ghost" id="logout" type="button">Sign out</button>
+  </div>
+</header>
+
+<main>
+  <!-- not configured -->
+  <section class="card hide" id="nocfg">
+    <h2>Not connected yet</h2>
+    <p class="sub">The admin page needs the hotel's Supabase connection. Open <b>config.js</b> and fill in the project URL and the anon key (the setup guide explains where to find them).</p>
+  </section>
+
+  <!-- login -->
+  <section class="card hide" id="login">
+    <h2>Sign in</h2>
+    <p class="sub">Only the hotel owner can sign in here.</p>
+    <form id="loginForm">
+      <label class="f" for="em">E-mail</label>
+      <input id="em" type="email" autocomplete="username" required>
+      <label class="f" for="pw">Password</label>
+      <input id="pw" type="password" autocomplete="current-password" required>
+      <p style="margin-top:14px"><button class="btn" type="submit" id="loginBtn">Sign in</button></p>
+      <div class="msg err hide" id="loginErr"></div>
+    </form>
+  </section>
+
+  <!-- app -->
+  <div class="hide" id="app">
+    <div class="tabs">
+      <button class="tab on" data-tab="controls" type="button">Controls</button>
+      <button class="tab" data-tab="stats" type="button">Statistics</button>
+    </div>
+
+    <!-- CONTROLS -->
+    <div id="tab-controls">
+      <section class="card">
+        <h2>Reservations</h2>
+        <p class="sub">Changes are saved at once and appear on the website within seconds.</p>
+        <div id="grp-res"></div>
+      </section>
+      <section class="card">
+        <h2>Sections of the website</h2>
+        <p class="sub">Switch a section off to hide it, together with its menu link.</p>
+        <div id="grp-sec"></div>
+      </section>
+      <section class="card">
+        <h2>Rooms</h2>
+        <p class="sub">Switch a room off when it is full or closed. It disappears from the website and from the booking form.</p>
+        <div id="grp-room"></div>
+      </section>
+      <section class="card">
+        <h2>Announcement banner</h2>
+        <p class="sub">A coloured bar at the very top of the website, for example a holiday notice.</p>
+        <div id="grp-banner"></div>
+        <label class="f" for="b_en">Message in English</label><textarea id="b_en" maxlength="140"></textarea>
+        <label class="f" for="b_fr">Message in French</label><textarea id="b_fr" maxlength="140"></textarea>
+        <label class="f" for="b_ar">Message in Arabic</label><textarea id="b_ar" maxlength="140" dir="rtl"></textarea>
+        <p style="margin-top:12px"><button class="btn" id="saveBanner" type="button">Save banner text</button></p>
+      </section>
+    </div>
+
+    <!-- STATS -->
+    <div class="hide" id="tab-stats">
+      <section class="card">
+        <label class="f" for="period" style="margin-top:0">Period</label>
+        <select id="period">
+          <option value="1">Today</option>
+          <option value="7" selected>Last 7 days</option>
+          <option value="30">Last 30 days</option>
+          <option value="90">Last 90 days</option>
+        </select>
+        <p class="sub" style="margin:10px 0 0">Anonymous numbers only. No names, e-mails or phone numbers are stored. The details of each request are in your e-mail.</p>
+      </section>
+      <div id="statsBody"></div>
+    </div>
+  </div>
+</main>
+<div class="toast" id="toast"></div>
+
+<script src="config.js"></script>
+<script>
+const SB = window.MIRAMAR_SB || {};
+const $ = id => document.getElementById(id);
+const LS = "mz_admin_session";
+let sess = null;
+try { sess = JSON.parse(localStorage.getItem(LS) || "null"); } catch(e){}
+let SET = {};
+
+const SECTIONS = [["sec_about","About / Welcome"],["sec_rooms","Rooms (and “How booking works”)"],["sec_amenities","Services"],["sec_dining","Café-restaurant"],["sec_gallery","Gallery"],["sec_location","Location"],["sec_plan","Plan your stay (house rules)"],["sec_contact","Contact"]];
+const ROOMS = [["r1","Double Room · Sea View"],["r2","Twin Room · Sea View"],["r3","Twin Room · City View"],["r4","Standard Triple · Sea View"],["r5","Superior Triple · City View"]];
+const ROOM_NAME = Object.fromEntries(ROOMS);
+
+function toast(t){ const el = $("toast"); el.textContent = t; el.classList.add("show"); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove("show"), 1800); }
+function saveSess(s){ sess = s; try { s ? localStorage.setItem(LS, JSON.stringify(s)) : localStorage.removeItem(LS); } catch(e){} }
+
+/* ---- tiny Supabase client (REST only, no libraries) ---- */
+async function refresh(){
+  if (!sess || !sess.refresh) return false;
+  try {
+    const r = await fetch(SB.url + "/auth/v1/token?grant_type=refresh_token", {method:"POST", headers:{apikey:SB.key, "Content-Type":"application/json"}, body:JSON.stringify({refresh_token:sess.refresh})});
+    if (!r.ok) return false;
+    const j = await r.json(); saveSess({access:j.access_token, refresh:j.refresh_token, email:(j.user && j.user.email) || sess.email}); return true;
+  } catch(e){ return false; }
+}
+async function api(path, opt = {}, retry = true){
+  const headers = Object.assign({apikey:SB.key, Authorization:"Bearer " + (sess ? sess.access : SB.key)}, opt.headers || {});
+  const r = await fetch(SB.url + path, Object.assign({}, opt, {headers}));
+  if (r.status === 401 && retry && sess && await refresh()) return api(path, opt, false);
+  return r;
+}
+async function login(email, password){
+  const r = await fetch(SB.url + "/auth/v1/token?grant_type=password", {method:"POST", headers:{apikey:SB.key, "Content-Type":"application/json"}, body:JSON.stringify({email, password})});
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(j.error_description || j.msg || "Wrong e-mail or password.");
+  saveSess({access:j.access_token, refresh:j.refresh_token, email:(j.user && j.user.email) || email});
+}
+
+/* ---- settings ---- */
+async function loadSettings(){
+  const r = await api("/rest/v1/site_settings?select=key,value");
+  if (!r.ok) throw new Error("Could not read the settings (" + r.status + ").");
+  const rows = await r.json(); SET = {}; rows.forEach(x => SET[x.key] = x.value);
+}
+async function setSetting(key, value){
+  const r = await api("/rest/v1/site_settings?on_conflict=key", {method:"POST", headers:{"Content-Type":"application/json", Prefer:"resolution=merge-duplicates,return=minimal"}, body:JSON.stringify([{key, value, updated_at:new Date().toISOString()}])});
+  if (!r.ok) throw new Error("Not saved (" + r.status + "). Are you signed in with the admin e-mail?");
+  SET[key] = value;
+}
+function switchRow(key, title, hint, onByDefault = true){
+  const on = onByDefault ? SET[key] !== false : SET[key] === true;
+  const row = document.createElement("div"); row.className = "row";
+  row.innerHTML = `<div>${title}${hint ? "<small>" + hint + "</small>" : ""}</div><label class="sw"><input type="checkbox" ${on ? "checked" : ""} aria-label="${title}"><i></i></label>`;
+  const cb = row.querySelector("input");
+  cb.addEventListener("change", async () => {
+    cb.disabled = true;
+    try { await setSetting(key, cb.checked); toast("Saved"); }
+    catch(e){ cb.checked = !cb.checked; toast(e.message); }
+    cb.disabled = false;
+  });
+  return row;
+}
+function renderControls(){
+  const put = (id, rows) => { const g = $(id); g.innerHTML = ""; rows.forEach(r => g.appendChild(r)); };
+  put("grp-res", [switchRow("reservations_on", "Accept online reservation requests", "When off, “Book now” shows a “please call us” message instead of the form.")]);
+  put("grp-sec", SECTIONS.map(([k,t]) => switchRow(k, t)));
+  put("grp-room", ROOMS.map(([k,t]) => switchRow("room_" + k, t)));
+  put("grp-banner", [switchRow("banner_on", "Show the banner", "", false)]);
+  $("b_en").value = SET.banner_en || ""; $("b_fr").value = SET.banner_fr || ""; $("b_ar").value = SET.banner_ar || "";
+}
+$("saveBanner").addEventListener("click", async () => {
+  try { await setSetting("banner_en", $("b_en").value.trim()); await setSetting("banner_fr", $("b_fr").value.trim()); await setSetting("banner_ar", $("b_ar").value.trim()); toast("Banner text saved"); }
+  catch(e){ toast(e.message); }
+});
+
+/* ---- statistics ---- */
+async function fetchEvents(sinceISO){
+  const out = []; const step = 1000;
+  for (let from = 0; from < 30000; from += step) {
+    const r = await api("/rest/v1/events?select=created_at,event,session,lang,device,ref,room,section,nights,guests&created_at=gte." + encodeURIComponent(sinceISO) + "&order=created_at.asc",
+      {headers:{"Range-Unit":"items", Range: from + "-" + (from + step - 1)}});
+    if (!r.ok && r.status !== 206) throw new Error("Could not read the statistics (" + r.status + ").");
+    const rows = await r.json(); out.push(...rows);
+    if (rows.length < step) break;
+  }
+  return out;
+}
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const pct = (a, b) => b ? Math.round(a * 100 / b) + "%" : "–";
+function bars(title, entries, total, fmt){
+  entries = entries.filter(e => e[1] > 0).sort((a,b) => b[1] - a[1]).slice(0, 8);
+  const max = Math.max(1, ...entries.map(e => e[1]));
+  return `<div class="card"><h2>${title}</h2>` + (entries.length ? entries.map(([k,v]) => `<div class="bar"><span>${esc(fmt ? fmt(k) : k)}</span><span class="t"><i style="width:${Math.round(v*100/max)}%"></i></span><em>${v}${total ? " · " + pct(v,total) : ""}</em></div>`).join("") : `<p class="empty">No data yet.</p>`) + `</div>`;
+}
+const count = (rows, f) => { const m = {}; rows.forEach(r => { const k = f(r); if (k != null && k !== "") m[k] = (m[k] || 0) + 1; }); return Object.entries(m); };
+const LANG = {en:"English", fr:"French", ar:"Arabic"}, DEV = {phone:"Phone", tablet:"Tablet", desktop:"Computer"};
+const SEC = {about:"The hotel", rooms:"Rooms", amenities:"Services", dining:"Restaurant", gallery:"Gallery", location:"Location", contact:"Contact"};
+async function renderStats(){
+  const body = $("statsBody"); body.innerHTML = `<p class="empty">Loading…</p>`;
+  const days = +$("period").value;
+  const start = new Date(); start.setHours(0,0,0,0); start.setDate(start.getDate() - (days - 1));
+  let ev;
+  try { ev = await fetchEvents(start.toISOString()); } catch(e){ body.innerHTML = `<div class="msg err">${esc(e.message)}</div>`; return; }
+  const visits = ev.filter(e => e.event === "visit"), clicks = ev.filter(e => e.event === "book_click"), reqs = ev.filter(e => e.event === "request_sent");
+  const sessions = new Set(ev.map(e => e.session).filter(Boolean)); const nSes = sessions.size;
+  const reqSes = new Set(reqs.map(e => e.session)).size;
+  let html = `<div class="kpis">
+    <div class="kpi"><b>${visits.length}</b><span>Page visits</span></div>
+    <div class="kpi"><b>${nSes}</b><span>Visitors (sessions)</span></div>
+    <div class="kpi"><b>${clicks.length}</b><span>“Book” taps</span></div>
+    <div class="kpi"><b>${reqs.length}</b><span>Requests sent</span></div>
+    <div class="kpi"><b>${pct(reqSes, nSes)}</b><span>Visitors who sent a request</span></div></div>`;
+  if (!ev.length) html += `<div class="msg info">No data for this period yet. If the website has been connected for a while and you still see nothing, check that you signed in with the admin e-mail.</div>`;
+  // daily bars
+  const dayKey = d => d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+  const per = {}; visits.forEach(v => { const k = dayKey(new Date(v.created_at)); per[k] = (per[k] || 0) + 1; });
+  const list = []; for (let i = 0; i < days; i++) { const d = new Date(start); d.setDate(start.getDate() + i); list.push([dayKey(d), per[dayKey(d)] || 0]); }
+  const mx = Math.max(1, ...list.map(x => x[1]));
+  html += `<div class="card"><h2>Visits per day</h2><div class="days">${list.map(([k,v]) => `<div style="height:${Math.max(2, Math.round(v*100/mx))}%" data-t="${k}: ${v}"></div>`).join("")}</div><div class="axis"><span>${list[0][0]}</span><span>${list[list.length-1][0]}</span></div></div>`;
+  // breakdowns
+  const vis = visits.length;
+  html += `<div class="grid2">` +
+    bars("Languages", count(visits, v => v.lang), vis, k => LANG[k] || k) +
+    bars("Devices", count(visits, v => v.device), vis, k => DEV[k] || k) +
+    bars("Where visitors come from", count(visits, v => v.ref || "direct"), vis, k => k === "direct" ? "Direct / unknown" : k) +
+    bars("Sections reached (visitors)", count(ev.filter(e => e.event === "section_view"), e => e.section), nSes, k => SEC[k] || k) +
+    bars("Rooms people tapped “Book” on", count(clicks, c => c.room), clicks.length, k => ROOM_NAME[k] || k) +
+    bars("Rooms in sent requests", count(reqs, r => r.room), reqs.length, k => ROOM_NAME[k] || k) + `</div>`;
+  // latest requests
+  const last = reqs.slice(-15).reverse();
+  html += `<div class="card"><h2>Latest requests sent</h2>` + (last.length ? `<div style="overflow-x:auto"><table><tr><th>When</th><th>Room</th><th>Nights</th><th>Guests</th><th>Lang</th><th>Device</th></tr>${last.map(r => `<tr><td>${esc(new Date(r.created_at).toLocaleString([], {dateStyle:"short", timeStyle:"short"}))}</td><td>${esc(ROOM_NAME[r.room] || r.room || "")}</td><td>${esc(r.nights ?? "")}</td><td>${esc(r.guests ?? "")}</td><td>${esc((r.lang || "").toUpperCase())}</td><td>${esc(DEV[r.device] || r.device || "")}</td></tr>`).join("")}</table></div>` : `<p class="empty">No requests in this period.</p>`) + `<p class="sub" style="margin:10px 0 0">The guest's name, phone and e-mail arrive in your e-mail inbox, not here.</p></div>`;
+  body.innerHTML = html;
+}
+
+/* ---- screens ---- */
+function show(id){ ["nocfg","login","app"].forEach(x => $(x).classList.toggle("hide", x !== id)); $("hbtns").classList.toggle("hide", id !== "app"); }
+async function enter(){
+  try { await loadSettings(); } catch(e){ if (sess) { saveSess(null); } show("login"); $("loginErr").textContent = e.message; $("loginErr").classList.remove("hide"); return; }
+  renderControls(); show("app");
+}
+document.querySelectorAll(".tab").forEach(t => t.addEventListener("click", () => {
+  document.querySelectorAll(".tab").forEach(x => x.classList.toggle("on", x === t));
+  $("tab-controls").classList.toggle("hide", t.dataset.tab !== "controls"); $("tab-stats").classList.toggle("hide", t.dataset.tab !== "stats");
+  if (t.dataset.tab === "stats") renderStats();
+}));
+$("period").addEventListener("change", renderStats);
+$("logout").addEventListener("click", () => { saveSess(null); show("login"); });
+$("loginForm").addEventListener("submit", async e => {
+  e.preventDefault(); $("loginErr").classList.add("hide"); $("loginBtn").disabled = true;
+  try { await login($("em").value.trim(), $("pw").value); $("pw").value = ""; await enter(); }
+  catch(ex){ $("loginErr").textContent = ex.message; $("loginErr").classList.remove("hide"); }
+  $("loginBtn").disabled = false;
+});
+(async () => {
+  if (!SB.url || !SB.key) { show("nocfg"); return; }
+  if (sess) { await enter(); } else { show("login"); }
+})();
+</script>
+</body>
+</html>
