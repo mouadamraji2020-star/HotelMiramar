@@ -401,13 +401,18 @@
   html[dir="rtl"] .rb{transform:translateY(-50%) scaleX(-1)}
 
   /* Café-restaurant section */
-  .dining-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center}
+  .dining-text{max-width:720px}
+  .mosaic{columns:3 260px;column-gap:12px;margin-top:40px}
+  .mz{display:block;break-inside:avoid;margin-bottom:12px;border-radius:14px;overflow:hidden;cursor:zoom-in;background:#0c1116;transition:filter .3s}
+  .mz:hover{filter:brightness(1.06)}
+  .mz img{display:block;width:100%;height:auto}
+  .dining-grid{display:block}
   .dining h2{font-size:clamp(2rem,3.6vw,2.9rem);margin:.3em 0 .5em}
   .dining p{color:#454c52;margin-bottom:1em}
   .dining-media{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .dm{border-radius:14px;background-size:cover;background-position:center;background-color:#0c1116}
   .dm-main{grid-column:span 2;aspect-ratio:4/3;background-image:var(--img);position:relative;overflow:hidden}
-  @media (max-width:960px){.dining-grid{grid-template-columns:1fr;gap:28px}.dining-media{order:-1}}
+  @media (max-width:560px){.mosaic{columns:2;column-gap:8px;margin-top:28px}.mz{margin-bottom:8px;border-radius:12px}}
 
   /* ===== V6 — phone redesign: rooms + booking first (screens up to 700px only; desktop unchanged) ===== */
   .mbar,.how,.rchips{display:none}
@@ -694,16 +699,23 @@
 </section>
 
 <section id="dining" class="dining">
-  <div class="wrap dining-grid">
-    <div class="reveal">
+  <div class="wrap">
+    <div class="dining-text reveal">
       <div class="eyebrow" data-i18n="din_eyebrow">Dining</div>
       <h2 data-i18n="din_title">Café-restaurant on site</h2>
       <p data-i18n="din_p1">A relaxed, leafy setting to enjoy a coffee or a meal: brasserie, burgers, pizzas and sandwiches, with large windows onto the Corniche and the beach, and big screens for the games.</p>
       <p data-i18n="din_p2">Breakfast is served 7:00–11:00 and is not included in the room rate.</p>
       <a class="btn btn-primary" href="https://scan.feadys.com/?uidEts=49LoPLdY4XR8SEtc3vqcTas2Nwn2&amp;OrderOnline=false" target="_blank" rel="noopener" data-i18n="din_menu">View the menu</a>
     </div>
-    <div class="dining-media reveal">
-      <div class="dm dm-main" role="img" aria-label="Café-restaurant of Hôtel Miramar Tanger" data-photos="images/restaurant-2.jpg,images/restaurant-3.jpg,images/restaurant-4.jpg,images/restaurant-5.jpg,images/restaurant-6.jpg,images/restaurant-7.jpg,images/restaurant-8.jpg" style="--img:url('images/restaurant.jpg')"></div>
+    <div class="mosaic">
+      <div class="mz" style="--img:url('images/restaurant.jpg')"><img src="images/restaurant.jpg" alt="" loading="lazy"></div>
+      <div class="mz" style="--img:url('images/restaurant-2.jpg')"><img src="images/restaurant-2.jpg" alt="" loading="lazy"></div>
+      <div class="mz" style="--img:url('images/restaurant-3.jpg')"><img src="images/restaurant-3.jpg" alt="" loading="lazy"></div>
+      <div class="mz" style="--img:url('images/restaurant-4.jpg')"><img src="images/restaurant-4.jpg" alt="" loading="lazy"></div>
+      <div class="mz" style="--img:url('images/restaurant-5.jpg')"><img src="images/restaurant-5.jpg" alt="" loading="lazy"></div>
+      <div class="mz" style="--img:url('images/restaurant-6.jpg')"><img src="images/restaurant-6.jpg" alt="" loading="lazy"></div>
+      <div class="mz" style="--img:url('images/restaurant-7.jpg')"><img src="images/restaurant-7.jpg" alt="" loading="lazy"></div>
+      <div class="mz" style="--img:url('images/restaurant-8.jpg')"><img src="images/restaurant-8.jpg" alt="" loading="lazy"></div>
     </div>
   </div>
 </section>
@@ -1179,7 +1191,7 @@ document.querySelectorAll(".reveal").forEach(el => io.observe(el));
 document.getElementById("yr").textContent = new Date().getFullYear();
 
 /* Gallery lightbox */
-const tiles = [...document.querySelectorAll(".g")], lb = document.getElementById("lb"), lbImg = lb.querySelector("img");
+const tiles = [...document.querySelectorAll(".mz, .g")], lb = document.getElementById("lb"), lbImg = lb.querySelector("img");
 let cur = 0;
 const srcOf = el => (getComputedStyle(el).getPropertyValue("--img").match(/url\(["']?(.*?)["']?\)/)||[])[1];
 const show = i => { cur = (i + tiles.length) % tiles.length; lbImg.src = srcOf(tiles[cur]); lb.classList.add("open"); };
