@@ -389,9 +389,9 @@
   @media (max-width:960px){body.has-banner .menu{top:114px}}
 
   /* Room photo sliders */
-  .room-img .rs{position:absolute;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-  .room-img .rs::-webkit-scrollbar{display:none}
-  .room-img .rs img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;scroll-snap-align:center;display:block}
+  .room-img .rs,.dm-main .rs{position:absolute;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .room-img .rs::-webkit-scrollbar,.dm-main .rs::-webkit-scrollbar{display:none}
+  .room-img .rs img,.dm-main .rs img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;scroll-snap-align:center;display:block}
   .room-img::after{pointer-events:none}
   .rb{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:#0c1116;font-size:20px;line-height:1;cursor:pointer;z-index:2;box-shadow:0 2px 8px rgba(0,0,0,.25)}
   .rb-p{inset-inline-start:10px}.rb-n{inset-inline-end:10px}
@@ -405,7 +405,7 @@
   .dining p{color:#454c52;margin-bottom:1em}
   .dining-media{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .dm{border-radius:14px;background-size:cover;background-position:center;background-color:#0c1116}
-  .dm-main{grid-column:span 2;aspect-ratio:4/3;background-image:url('images/restaurant.jpg')}
+  .dm-main{grid-column:span 2;aspect-ratio:4/3;background-image:var(--img);position:relative;overflow:hidden}
   @media (max-width:960px){.dining-grid{grid-template-columns:1fr;gap:28px}.dining-media{order:-1}}
 
   /* ===== V6 — phone redesign: rooms + booking first (screens up to 700px only; desktop unchanged) ===== */
@@ -702,7 +702,7 @@
       <a class="btn btn-primary" href="https://scan.feadys.com/?uidEts=49LoPLdY4XR8SEtc3vqcTas2Nwn2&amp;OrderOnline=false" target="_blank" rel="noopener" data-i18n="din_menu">View the menu</a>
     </div>
     <div class="dining-media reveal">
-      <div class="dm dm-main" role="img" aria-label="Café-restaurant of Hôtel Miramar Tanger"></div>
+      <div class="dm dm-main" role="img" aria-label="Café-restaurant of Hôtel Miramar Tanger" data-photos="images/restaurant-2.jpg,images/restaurant-3.jpg,images/restaurant-4.jpg,images/restaurant-5.jpg,images/restaurant-6.jpg" style="--img:url('images/restaurant.jpg')"></div>
     </div>
   </div>
 </section>
@@ -1144,7 +1144,7 @@ $("rv-step2").addEventListener("submit", async e => {
 });
 
 /* Room photo sliders: first photo is the card's own picture, then the extra photos */
-document.querySelectorAll(".room-img[data-photos]").forEach(box => {
+document.querySelectorAll(".room-img[data-photos], .dm-main[data-photos]").forEach(box => {
   const first = (getComputedStyle(box).getPropertyValue("--img").match(/url\(["']?(.*?)["']?\)/)||[])[1];
   const list = [first, ...box.dataset.photos.split(",")].filter(Boolean);
   if (list.length < 2) return;
