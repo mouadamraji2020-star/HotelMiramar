@@ -39,8 +39,11 @@
   .sw i::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.3)}
   .sw input:checked+i{background:var(--ok)}
   .sw input:checked+i::after{transform:translateX(22px)}
-  .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;font-size:.88rem;opacity:0;pointer-events:none;transition:.25s;z-index:20}
-  .toast.show{opacity:1}
+  .toast{position:fixed;left:50%;top:78px;transform:translate(-50%,-14px);display:flex;align-items:center;gap:10px;width:max-content;max-width:calc(100vw - 32px);background:#e8f6ee;color:#14663a;border:1px solid #b9e3cb;padding:10px 18px 10px 12px;border-radius:14px;font:600 .92rem system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;box-shadow:0 8px 24px rgba(11,27,39,.14);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:20}
+  .toast::before{content:"✓";flex:none;width:24px;height:24px;border-radius:50%;background:var(--ok);color:#fff;display:grid;place-items:center;font-size:.9rem;line-height:1}
+  .toast.err{background:#fdecea;color:#8a2f13;border-color:#f3c3ba}
+  .toast.err::before{content:"!";background:var(--bad)}
+  .toast.show{opacity:1;transform:translate(-50%,0)}
   /* stats */
   .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:16px}
   .kpi{background:#fff;border-radius:14px;padding:16px}
@@ -159,7 +162,7 @@ const SECTIONS = [["sec_about","About / Welcome"],["sec_rooms","Rooms (and “Ho
 const ROOMS = [["r1","Double Room · Sea View"],["r2","Twin Room · Sea View"],["r3","Twin Room · City View"],["r4","Standard Triple · Sea View"],["r5","Superior Triple · City View"]];
 const ROOM_NAME = Object.fromEntries(ROOMS);
 
-function toast(t){ const el = $("toast"); el.textContent = t; el.classList.add("show"); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove("show"), 1800); }
+function toast(t, kind){ const el = $("toast"); el.textContent = t; el.classList.toggle("err", kind === "err"); el.classList.add("show"); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove("show"), kind === "err" ? 4500 : 2000); }
 function saveSess(s){ sess = s; try { s ? localStorage.setItem(LS, JSON.stringify(s)) : localStorage.removeItem(LS); } catch(e){} }
 
 /* ---- tiny Supabase client (REST only, no libraries) ---- */
@@ -204,7 +207,7 @@ function switchRow(key, title, hint, onByDefault = true){
   cb.addEventListener("change", async () => {
     cb.disabled = true;
     try { await setSetting(key, cb.checked); toast("Saved"); }
-    catch(e){ cb.checked = !cb.checked; toast(e.message); }
+    catch(e){ cb.checked = !cb.checked; toast(e.message, "err"); }
     cb.disabled = false;
   });
   return row;
@@ -219,7 +222,7 @@ function renderControls(){
 }
 $("saveBanner").addEventListener("click", async () => {
   try { await setSetting("banner_en", $("b_en").value.trim()); await setSetting("banner_fr", $("b_fr").value.trim()); await setSetting("banner_ar", $("b_ar").value.trim()); toast("Banner text saved"); }
-  catch(e){ toast(e.message); }
+  catch(e){ toast(e.message, "err"); }
 });
 
 /* ---- statistics ---- */
