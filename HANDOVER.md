@@ -19,7 +19,7 @@ The owner is a beginner programmer who works at the hotel's reception.
 - Sections in order: header + language switch, hero, booking bar, highlights strip, About, Rooms (5 cards), Services (8 tiles), Gallery (8 photos + full-screen lightbox), Location (Google Maps embed), Good to know, Contact + WhatsApp form, footer (4 columns), floating WhatsApp button.
 
 ## Languages
-English, French and Arabic (Arabic switches the page to right-to-left). All text lives in the `T` object in the script (`T.en`, `T.fr`, `T.ar`). Elements use `data-i18n="key"` (text) or `data-i18n-ph="key"` (placeholder). **Any new text must be added in all 3 languages.**
+English, French, Spanish and Arabic (Arabic switches the page to right-to-left). Spanish (`T.es`) was added Nov 2026; browsers set to Spanish open the site in Spanish automatically. The admin page has a Spanish banner message box (setting `banner_es`); the admin interface itself stays EN/FR/AR. All text lives in the `T` object in the script (`T.en`, `T.fr`, `T.ar`). Elements use `data-i18n="key"` (text) or `data-i18n-ph="key"` (placeholder). **Any new text must be added in all 4 languages (EN, FR, ES, AR).**
 
 ## Reservations
 - No Booking.com. Every "Book now" / "Check availability" button opens a 2-step reservation pop-up: (1) dates, guests, room choice (rooms that sleep fewer than the guest count are greyed out) → (2) name, phone/WhatsApp, email, arrival time, message.
