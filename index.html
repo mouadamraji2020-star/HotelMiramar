@@ -729,15 +729,22 @@
       <div class="eyebrow" data-i18n="gal_eyebrow">Gallery</div>
       <h2 data-i18n="gal_title">A look inside Miramar</h2>
     </div>
-    <div class="gallery reveal">
-      <div class="g big" style="--img:url('images/gallery-1.jpg');--c1:#2f6f8f;--c2:#0f2a3d"></div>
-      <div class="g" style="--img:url('images/gallery-2.jpg');--c1:#e7c9a6;--c2:#c0663f"></div>
-      <div class="g" style="--img:url('images/gallery-3.jpg');--c1:#8fc1d6;--c2:#2f6f8f"></div>
-      <div class="g" style="--img:url('images/gallery-4.jpg');--c1:#173a52;--c2:#d9a679"></div>
-      <div class="g" style="--img:url('images/gallery-5.jpg');--c1:#e7c9a6;--c2:#c0663f"></div>
-      <div class="g" style="--img:url('images/gallery-6.jpg');--c1:#8fc1d6;--c2:#2f6f8f"></div>
-      <div class="g" style="--img:url('images/gallery-7.jpg');--c1:#173a52;--c2:#d9a679"></div>
-      <div class="g wide" style="--img:url('images/gallery-8.jpg');--c1:#2f6f8f;--c2:#0f2a3d"></div>
+    <div class="mosaic reveal">
+      <div class="mz" style="--img:url('images/gallery-1.jpg')"><img src="images/gallery-1.jpg" alt="" loading="lazy"></div>
+      <div class="mz" style="--img:url('images/gallery-2.jpg')"><img src="images/gallery-2.jpg" alt="" loading="lazy"></div>
+      <div class="mz" style="--img:url('images/gallery-3.jpg')"><img src="images/gallery-3.jpg" alt="" loading="lazy"></div>
+      <div class="mz" style="--img:url('images/gallery-4.jpg')"><img src="images/gallery-4.jpg" alt="" loading="lazy"></div>
+      <div class="mz" style="--img:url('images/gallery-5.jpg')"><img src="images/gallery-5.jpg" alt="" loading="lazy"></div>
+      <div class="mz" style="--img:url('images/gallery-6.jpg')"><img src="images/gallery-6.jpg" alt="" loading="lazy"></div>
+      <div class="mz" style="--img:url('images/gallery-7.jpg')"><img src="images/gallery-7.jpg" alt="" loading="lazy"></div>
+      <div class="mz" style="--img:url('images/gallery-8.jpg')"><img src="images/gallery-8.jpg" alt="" loading="lazy"></div>
+      <div class="mz" style="--img:url('images/gallery-9.jpg')"><img src="images/gallery-9.jpg" alt="" loading="lazy"></div>
+      <div class="mz" style="--img:url('images/gallery-10.jpg')"><img src="images/gallery-10.jpg" alt="" loading="lazy"></div>
+      <div class="mz" style="--img:url('images/gallery-11.jpg')"><img src="images/gallery-11.jpg" alt="" loading="lazy"></div>
+      <div class="mz" style="--img:url('images/gallery-12.jpg')"><img src="images/gallery-12.jpg" alt="" loading="lazy"></div>
+      <div class="mz" style="--img:url('images/gallery-13.jpg')"><img src="images/gallery-13.jpg" alt="" loading="lazy"></div>
+      <div class="mz" style="--img:url('images/gallery-14.jpg')"><img src="images/gallery-14.jpg" alt="" loading="lazy"></div>
+      <div class="mz" style="--img:url('images/gallery-15.jpg')"><img src="images/gallery-15.jpg" alt="" loading="lazy"></div>
     </div>
   </div>
 </section>
@@ -1196,12 +1203,12 @@ const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecti
 document.querySelectorAll(".reveal").forEach(el => io.observe(el));
 document.getElementById("yr").textContent = new Date().getFullYear();
 
-/* Gallery lightbox */
-const tiles = [...document.querySelectorAll(".mz, .g")], lb = document.getElementById("lb"), lbImg = lb.querySelector("img");
-let cur = 0;
+/* Gallery lightbox: browses the photos of the section you tapped in */
+const lb = document.getElementById("lb"), lbImg = lb.querySelector("img");
+let tiles = [], cur = 0;
 const srcOf = el => (getComputedStyle(el).getPropertyValue("--img").match(/url\(["']?(.*?)["']?\)/)||[])[1];
 const show = i => { cur = (i + tiles.length) % tiles.length; lbImg.src = srcOf(tiles[cur]); lb.classList.add("open"); };
-tiles.forEach((t,i) => t.addEventListener("click", () => show(i)));
+document.querySelectorAll(".mz, .g").forEach(t => t.addEventListener("click", () => { const sec = t.closest("section"); tiles = [...sec.querySelectorAll(".mz, .g")]; show(tiles.indexOf(t)); }));
 lb.querySelector(".lb-x").onclick = () => lb.classList.remove("open");
 lb.querySelector(".lb-p").onclick = e => { e.stopPropagation(); show(cur-1); };
 lb.querySelector(".lb-n").onclick = e => { e.stopPropagation(); show(cur+1); };
